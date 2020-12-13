@@ -1,0 +1,347 @@
+
+.app-l-batch-grid {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.app-l-batch-card {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 16px;
+    margin-bottom: 8px;
+
+    @include flexbox();
+    @include flex-direction(column);
+    @include boxShadow(0px 3px 6px rgba(63, 63, 63, 0.1));
+    @include border-radius(0px 0px 4px 4px);
+
+    .app-l-batch-card-forms {
+        margin: -8px;
+
+        @include flexbox();
+        @include flex-wrap(wrap);
+    
+        .form-group{
+            margin: 8px;
+        }
+
+        + .app-l-batch-card-footer {
+            margin-top: 8px;
+        }
+    }
+
+    .app-l-batch-card-footer {
+        padding: 8px 0px;
+        max-width: 100%;
+        border-top: $generic-border-color 1px solid;
+
+        @include flexbox();
+        @include justify-content(flex-end);
+        @include align-items(center);
+
+        @media screen and (max-width: 480px){
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+        }
+
+        > * {
+            @media screen and (max-width: 480px){
+                width: 100%;
+            }
+            +  * {
+                @media screen and (max-width: 480px){
+                    margin-top: 5px;
+                    margin-left: 0;
+                    width: 100%;
+                }
+            }
+        }
+        > .app-c-btn {
+            &.app-c-btn--icon {
+                width: 30px;
+                
+                @media screen and (max-width: 480px){
+                    width: 30px;
+                    margin-right: 8px;
+                }
+            }
+
+            + .app-c-btn {
+                @media screen and (max-width: 480px){
+                    margin-left: 0px !important;
+                }
+            }
+        }
+    }
+}
+
+.app-l-section-seperator {
+    margin-left: -16px;
+    margin-right: -16px;
+
+    height: 1px;
+    width: auto;
+    min-width: calc(100% + 16px);
+    background-color: $text-light-normal;
+}
+
+.app-l-grid-operations {
+    padding: 8px 0px;
+    max-width: 100%;
+
+    @include flexbox();
+    @include align-items(center);
+
+    @media screen and (max-width: 767px){
+        @include flex-wrap(wrap);
+        @include justify-content(flex-start);
+    }
+
+    .app-c-grid-ops-btn-group {
+        margin-left: auto;
+
+        @include flexbox();
+        @include justify-content(flex-end);
+        @include align-items(center);
+
+        @media screen and (max-width: 767px){
+            margin-top: 8px;
+            width: 100%;
+
+            @include flex-wrap(wrap);
+            @include justify-content(flex-start);
+        }
+
+        .app-c-file-upload {
+            + .app-c-btn {
+                margin-left: 8px;
+            }
+        }
+
+        > * {
+            @media screen and (max-width: 767px){
+                width: 100%;
+            }
+            +  * {
+                @media screen and (max-width: 767px){
+                    margin-top: 5px;
+                    margin-left: 0;
+                    width: 100%;
+                }
+            }
+        }
+
+        > .app-c-btn {
+            &.app-c-btn--icon {
+                width: 30px;
+                
+                @media screen and (max-width: 767px){
+                    width: 30px;
+                    margin-right: 8px;
+                }
+            }
+
+            + .app-c-btn {
+                @media screen and (max-width: 767px){
+                    margin-left: 0px !important;
+                }
+            }
+        }
+    }
+}
+
+.app-l-modal-grid {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.app-l-materials-modal {
+    .modal-content {
+        .modal-body {
+            @include flexbox();
+            @include flex-direction(column);
+        }
+    }
+}
+
+.app-l-roles-listing {
+    .app-c-checkbox {
+        padding: 9px 8px 9px 16px;
+
+        &.app-l-selected-role {
+            background: $companies-dropdown-selection-bg;
+        }
+    }
+}
+
+.app-c-form--inline-label{
+
+    .app-l-form__inline-left{
+
+        &.app-c-form--min-310{
+            width: 100%;
+            max-width: 310px;
+            min-width: 310px;
+        
+            @media screen and (max-width: 576px){
+                min-width: 200px;
+            }
+            @media screen and (max-width: 480px){
+                max-width: 100%;
+                min-width: 123px;
+            }
+        }
+    }
+}
+
+.app-l-profile-avatar {
+    max-width: 100%;
+    min-width: 0;
+    padding: 0px 0px 16px 0px;
+    margin: 0px 0px 16px 0px;
+
+    @include flexbox();
+    @include flex-direction(column);
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-shrink(0);
+    
+    .app-l-avatar-wrap {
+        margin: 0;
+        position: relative;
+        
+        @include flexbox();
+        @include align-items(center);
+        @include flex-shrink(0);
+        @include justify-content(center);
+
+        .app-l-avatar-img-holder {
+            width: 146px;
+            height: 146px;
+            overflow: hidden;
+            border: solid 2px $avatar-border;
+
+            @include flexbox();
+            @include align-items(center);
+            @include flex-shrink(0);
+            @include justify-content(center);
+            @include border-radius(50%);
+            
+            > img {
+                width: 146px;
+                max-width: 146px;
+                height: 146px;
+                max-height: 146px;
+                margin: auto;
+
+                @include flex-shrink(0);
+            }
+        }
+
+        .app-l-avatar-modify {
+            position: absolute;
+            bottom: -5px;
+            right: 10px;
+            top: auto;
+            left: auto;
+            width: 43px;
+            height: 43px;
+            overflow: hidden;
+
+            @include flexbox();
+            @include align-items(center);
+            @include flex-shrink(0);
+            @include justify-content(center);
+            @include border-radius(50%);
+
+            .app-l-avatar-option {
+                position: relative;
+                overflow: hidden;
+
+                @include flexbox();
+                @include align-items(center);
+                @include flex-shrink(0);
+                @include justify-content(center);
+
+                .app-l-avatar-change {
+                    width: 43px;
+                    height: 43px;
+                    overflow: hidden;
+                    outline: none;
+                    border: solid 2px $avatar-border;
+                    background-color: $app-brand-primary;
+                    cursor: pointer;
+        
+                    @include flexbox();
+                    @include align-items(center);
+                    @include flex-shrink(0);
+                    @include justify-content(center);
+                    @include border-radius(50%);
+                    @include transition(background-color 0.2s ease-in-out, border-color 0.2s ease-in-out);
+                    
+                    &:hover {
+                        border-color: $app-brand-primary;
+                        background-color: $white;
+                        
+                        i {
+                            color: $app-brand-primary;
+                        }
+                    }
+                    
+                    > i {
+                        margin: auto;
+                        color: $white;
+                        font-size: 16px;
+        
+                        @include transition(color 0.2s ease-in-out);
+                    }
+                }
+
+                > input {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+.app-l-form-group-holder{
+    max-width: 1400px;
+    margin: -8px;
+
+    @include flexbox();
+    @include flex-wrap(wrap);
+
+    .form-group{
+        margin: 8px;
+        width: calc(50% - 16px);
+        
+        @media screen and (max-width: 576px) {
+            width: calc(100% - 16px);
+        }
+    }
+}
+
+.app-l-material-controls {
+    width: 100%;
+
+    @include flexbox();
+    @include flex-direction(column);
+}
+
+.app-l-extended-discription {
+    
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+}

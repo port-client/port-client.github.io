@@ -1,0 +1,14 @@
+//Progress bar
+//----------------------------------------------------
+
+@import "../core/mixins/border-radius";
+
+.progress {
+    height: 9px;
+
+    @include border-radius(15px);
+
+    .progress-bar{
+        background: $app-brand-primary;
+    }
+}

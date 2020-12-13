@@ -1,0 +1,121 @@
+.tooltip{
+    &.show{
+        opacity: 1;
+    }
+    .tooltip-inner{
+        background: $tooltip-background;
+        padding: 4px 8px;
+        font-size: $text-md;
+        color: $white;
+        line-height: 18px;
+        text-align: left;
+
+        @include border-radius(4px);
+
+        h3{
+            color: $white;
+        }
+    }
+    &.bs-tooltip-top{
+        .tooltip-arrow{
+            &:before{
+                border-width: 7px 8px;
+                border-top-color: $tooltip-arrow-background;
+            }
+        }
+    }
+    &.bs-tooltip-bottom{
+        .tooltip-arrow{
+            &:before{
+                border-width: 7px 8px;
+                border-bottom-color: $tooltip-arrow-background;
+            }
+        }
+    }
+    &.bs-tooltip-right{
+        .tooltip-arrow{
+            &:before{
+                border-width: 8px 7px;
+                border-right-color: $tooltip-arrow-background;
+            }
+        }
+    }
+    &.bs-tooltip-left{
+        .tooltip-arrow{
+            &:before{
+                border-width: 8px 7px;
+                border-left-color: $tooltip-arrow-background;
+            }
+        }
+    }
+}
+
+.app-l-tab-error {
+    top: 22px !important;
+    font-family: inherit !important;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    zoom : 0%;
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+
+    @include transform-origin(0% 0%);
+    @include transform-style(flat);
+
+    &.tooltip {
+        .tooltip-arrow {
+            display: none;
+        }
+        .tooltip-inner {
+            background-color: $validation-red;
+            padding: 6px 8px 4px 8px;
+            opacity: 1;
+            visibility: visible;
+            font-family: inherit !important;
+            
+            > p {
+                visibility: visible;
+                color: $white;
+                font-size: 11px;
+                line-height: 13px;
+                font-weight: 400;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.dx-overlay-wrapper {
+    font-family: inherit !important;
+}
+
+.dx-tooltip-wrapper {
+    .dx-overlay-content {
+        background-color: $tooltip-background;
+        border-color: $tooltip-background;
+        color: $white;
+        font-size: 11px;
+        line-height: 13px;
+        font-weight: 400;
+        font-family: inherit !important;
+        min-height: 23px;
+
+        @include inline-flex();
+        @include justify-content(center);
+        @include align-items(center);
+
+        .dx-popover-arrow {
+            &:after {
+                background-color: $tooltip-arrow-background;
+            }
+        }
+        .dx-popup-content {
+            padding: 6px 8px 4px 8px;
+            font-family: inherit !important;
+            height: 100%;
+            font-size: 11px;
+            line-height: 13px;
+            font-weight: 400;
+        }
+    }
+}

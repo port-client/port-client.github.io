@@ -1,0 +1,229 @@
+//General checkbox
+//----------------------------------------------------
+
+@import "../core/mixins/box-shadow";
+@import "../core/mixins/flexbox";
+@import "../core/mixins/transform";
+@import "../core/mixins/transitions";
+
+.app-c-checkbox {
+	@include inline-flex();
+
+	& + * {
+		margin-left: 10px;
+	}
+	&.app-c-checkbox--inline {
+		display: inline-block;
+		& + * {
+			margin-left: 10px;
+		}
+	}
+
+	&.app-c-checkbox--align-in-form {
+		@media (min-width: 480) {
+			margin-top: 45px;
+		}
+	}
+	&.disabled {
+		> label {
+			cursor: default;
+		}
+		.app-c-checkbox-icon {
+			background: $app-checkbox-border;
+		}
+	}
+}
+
+.app-c-checkbox > label {
+	position: relative;
+	margin: 0;
+	cursor: pointer;
+	line-height: 13px;
+
+	@include inline-flex();
+	@include align-items(flex-start);
+	
+	> input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: auto;
+		bottom: auto;
+		margin: 0;
+		opacity: 0;
+    	z-index: 1;
+		width: 1px;
+		height: 1px;
+		cursor: pointer;
+		// display: none;
+
+		&[type="checkbox"]:checked + .app-c-checkbox-icon {
+			background: $app-brand-primary;
+			border-color: $app-brand-primary-dark;
+
+			&::before{
+				opacity:1;
+
+				filter: alpha(opacity=100);
+			}
+		}
+		&[type="checkbox"]:indeterminate + .app-c-checkbox-icon {
+			&:before{
+				content: '';
+				width: 8px;
+				height: 8px;
+				background: $app-brand-primary;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				opacity: 1;
+
+				@include border-radius(2px);
+			}
+		}
+		&[disabled] + .app-c-checkbox-icon {
+			cursor: not-allowed;
+			border-color: transparent;
+			background: $text-light-medium;
+		}
+		&[type="checkbox"]:checked {
+			&[disabled] + .app-c-checkbox-icon {
+				background: $app-brand-primary;
+				border-color: $app-brand-primary-dark;
+				opacity: 0.5;
+			}
+		}
+		&[type="checkbox"]:focus{
+			+ .app-c-checkbox-icon{
+				@include boxShadow(0px 0px 0px 5px $app-l-toggle-check-focus);
+			}
+		}
+	}
+
+	&.reversed {
+		@include flex-direction(row-reverse);
+	
+		.app-c-checkbox-label {
+			padding-left: 0px;
+			padding-right: 6px;
+		}
+	}
+}
+
+.app-c-checkbox-icon {
+	width: $checkbox-size;
+	height: $checkbox-size;
+	border: 1px solid $app-checkbox-border;
+	position: relative;
+	background: $app-checkbox-bg;
+	padding-top: 1px;
+
+	@include transition(background ease 0.2s, border ease 0.2s, box-shadow ease 0.2s);
+	@include flexbox();
+	@include align-items(center);
+	@include justify-content(center);
+	@include flex-shrink(0);
+	@include border-radius(2px);
+	@include align-self(flex-start);
+
+	&::before {
+		content: "\e90f";
+		font-family: $font-port-client;
+		font-size: 11px;
+		color: $white;
+		display: block; 
+		
+		opacity: 0;
+		filter:alpha(opacity=0);
+
+		@include transition(opacity ease 0.2s, transform ease 0.2s);
+	}
+}
+.app-c-checkbox-label {
+	padding-left: 6px;
+	padding-top: 2px;
+	color: #3B4458;
+	font-size: 13px;
+	line-height: 14px;
+	font-weight: 400;
+}
+
+.app-c-checkbox > .app-c-checkbox-content {
+	position: relative;
+	margin: 0;
+	cursor: pointer;
+	line-height: 13px;
+
+	@include inline-flex();
+	@include align-items(flex-start);
+}
+
+.app-c-checkbox--input-right > label {
+	display: block;
+	padding-left: 0;
+	padding-right: 24px;
+
+	.app-c-checkbox-icon {
+		left: auto;
+		right: 0;
+
+		&::before {
+			right: 2px;
+		}
+	}
+
+}
+
+.app-c-checkbox--list {
+	 > .app-c-checkbox {
+		 margin: 0;
+		 padding: 12px;
+	 }
+
+	  > .app-c-checkbox:not(:last-child) {
+		  border-bottom: solid 1px $app-checkbox-border;
+	  }
+}
+
+.app-c-checkbox-button-group--inline {
+	.app-c-checkbox-button {
+		display: inline-block;
+
+		& + & { margin-left: 10px; }
+	}
+}
+.app-c-checkbox__vertical-list {
+	.app-c-checkbox {
+		@include flexbox();
+		
+		+ .app-c-checkbox {
+			margin-top: 18px;
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+	}
+
+	&.app-l-roles-listing {
+		.app-c-checkbox {
+			
+			+ .app-c-checkbox {
+				margin-top: 0px;
+			}
+		}
+	}
+}
+.app-c-checkbox__horizontal-list {
+	.app-c-checkbox {
+		display: inline-block;
+		+ .app-c-checkbox {
+			margin-top: 0px;
+			margin-left: 10px;
+			margin-right: 0px;
+		}
+	}
+}
+
+

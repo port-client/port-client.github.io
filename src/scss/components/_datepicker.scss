@@ -1,0 +1,407 @@
+@import "../theme/theme";
+@import "../variables/variables";
+@import "../core/mixins/box-shadow";
+@import "../core/mixins/transitions";
+@import "../core/mixins/border-radius";
+@import "../core/mixins/transitions";
+@import "../core/mixins/flexbox";
+
+.dx-widget{
+    &.dx-datebox{
+        border-color: $form-control-border;
+        
+        @include border-radius(2px); 
+        @include transition(border ease 0.2s, box-shadow ease 0.2s);
+
+        .dx-dropdowneditor-input-wrapper{
+            .dx-texteditor-container{
+                .dx-texteditor-input-container{
+                    .dx-texteditor-input{
+                        min-height: 0;
+                        padding: 5px 10px 5px;
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: $text-color;
+                        height: 30px;
+                    }
+                }
+                .dx-texteditor-buttons-container{
+                    .dx-dropdowneditor-button{
+                        width: 37px;
+                        min-width: 37px;
+
+                        .dx-button-content{
+                            .dx-dropdowneditor-icon{
+                                background: none;
+                                color: #898e97;
+
+                                &:before{
+                                    content: "\e917";
+                                    font-family: $font-port-client; 
+                                    font-size: 17px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.dx-state-active, &.dx-state-focused{
+            border-color: $form-control-active-border;
+
+            @include noShadow();
+        }
+        &.dx-state-disabled{
+            border-color: $form-control-disable-border;
+            background: $form-control-disable-background;
+            opacity: 1;
+        }
+        &.dx-show-invalid-badge{
+            .dx-dropdowneditor-input-wrapper{
+                .dx-texteditor-container{
+                    .dx-texteditor-input-container{
+                        &:after{
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .dx-invalid-message{
+                .dx-invalid-message-content{
+                    // display: none;
+                }
+            }
+        }
+
+        &.dx-datebox-time {
+            .dx-dropdowneditor-input-wrapper{
+                .dx-texteditor-container{
+                    .dx-texteditor-buttons-container{
+                        .dx-dropdowneditor-button{
+    
+                            .dx-button-content{
+                                .dx-dropdowneditor-icon{
+    
+                                    &:before{
+                                        content: "\e945";
+                                        font-family: $font-port-client; 
+                                        font-size: 17px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dx-datebox-wrapper{
+    .dx-popup-normal{
+        border: none;
+        
+        @include boxShadow(0px 0px 6px #B6BAC5);
+        @include border-radius(6px);
+        
+        .dx-popup-content{
+            height: 100%;
+
+            .dx-calendar{
+                margin: 0px;
+                height: 278px;
+
+                .dx-calendar-navigator{
+                    margin: 0px;
+                    height: 46px;
+                    border-bottom: solid 1px $text-light-normal;
+
+                    .dx-button{
+                        border: none;
+
+                        &.dx-button-has-icon{
+                            width: 35px;
+
+                            .dx-button-content{
+                                .dx-icon{
+                                    color: #A1ABB7;
+                                    font-size: 11px;
+
+                                    @include transition(color ease 0.2s);
+
+                                    &:before{
+                                        content: '';
+                                        font-family: $font-port-client;
+                                    }
+                                }
+                            }
+                            &.dx-calendar-navigator-previous-view{
+                                .dx-button-content{
+                                    .dx-icon{
+                                        &:before{
+                                            content: "\e919";
+                                        }
+                                    }
+                                }
+                            }
+                            &.dx-calendar-navigator-next-view{
+                                .dx-button-content{
+                                    .dx-icon{
+                                        &:before{
+                                            content: "\e91a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.dx-calendar-caption-button{
+                            background-color: transparent;
+                            
+                            .dx-button-content{
+                                color: $text-color;
+                                text-transform: uppercase;
+                                font-size: 14px;
+                                font-weight: 500;
+                                padding: 6px 8px 4px 8px;
+
+                                @include transition(color ease 0.2s);
+                            }
+                        }
+                        &.dx-state-hover, &.dx-state-active{
+                            background: none;
+                            .dx-button-content{
+
+                                .dx-icon{
+                                    color: $app-brand-primary;
+                                }
+                            }
+                            .dx-button-content{
+                                color: $app-brand-primary;
+                            }
+                        }
+                    }
+                }
+                .dx-calendar-body{
+                    margin: 0 8px 8px 8px;
+                    top: 60px;
+
+                    .dx-calendar-views-wrapper{
+                        table{
+                            thead{
+                                tr{
+                                    th{
+                                        color: $text-dark-normal;
+                                        font-size: 12px;
+                                        font-weight: 500;
+
+                                        @include noShadow();
+                                    }
+                                }
+                            }
+                            tbody{
+                                tr{
+                                    .dx-calendar-cell{
+                                        color: $text-color;
+                                        font-size: 14px;
+                                        font-weight: 500;
+                                        padding: 4px;
+                                        vertical-align: middle;
+
+                                        @include noShadow();
+
+                                        > span{
+                                            min-width: 28px;
+                                            min-height: 28px;
+                                            height: 100%;
+                                            line-height: normal;
+                                            padding: 2px 2px 0 2px;
+
+                                            @include border-radius(3px);
+                                            @include flexbox();
+                                            @include align-items(center);
+                                            @include justify-content(center);
+                                        }
+
+                                        &.dx-calendar-other-view{
+                                            color: $text-dark-normal;
+                                        }
+                                        &:hover{
+                                            > span{
+                                                background: $text-light-normal;
+                                            }
+                                        }
+                                        &.dx-calendar-today{
+                                            > span{
+                                                border: $text-color 1px solid;
+                                            }
+                                        }
+                                        &.dx-calendar-selected-date{
+                                            > span{
+                                                background: $app-brand-primary-light;
+                                                color: $white;
+                                                border-color: transparent;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.dx-calendar-view-century {
+                    .dx-calendar-views-wrapper{
+                        table{
+                            tbody{
+                                tr{
+                                    .dx-calendar-cell{
+                                        > span{
+                                            text-align: left;
+                                            padding: 2px 4px 0px 4px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.app-l-date-field {
+    &.dx-datebox {
+        .dx-dropdowneditor-input-wrapper {
+            .dx-texteditor-container {
+                .dx-texteditor-input-container {
+                    .dx-texteditor-input {
+                        height: 28px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.app-l-date-field-no-dx-msg {
+    &.dx-datebox {
+        &.dx-show-invalid-badge {
+            .dx-invalid-message {
+                .dx-overlay-wrapper {
+                    .dx-overlay-content {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dx-datebox-wrapper-datetime {
+    .dx-overlay-content {
+        .dx-popup-content {
+
+        }
+        .dx-popup-bottom {
+            .dx-toolbar-items-container {
+                .dx-toolbar-before {
+                    .dx-toolbar-button {
+                        .dx-item-content {
+                            .dx-button {
+                                @extend .app-c-btn;
+                            }
+                            .dx-button-today {
+                                background: $app-brand-primary;
+                                border-color: $app-brand-primary;
+
+                                min-width: 80px;
+                            
+                                @include justify-content(center);
+
+                                &.dx-state-hover, &.dx-state-active {
+                                    background: $app-brand-primary-dark;
+                                    border-color: $app-brand-primary-dark;
+                                    outline: none;
+                                }
+
+                                .dx-button-content {
+                                    .dx-button-text {
+                                        color: $white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .dx-toolbar-after {
+                    .dx-toolbar-button {
+                        .dx-item-content {
+                            .dx-button {
+                                @extend .app-c-btn;
+                            }
+                            .dx-popup-done {
+                                background: $app-brand-primary;
+                                border-color: $app-brand-primary;
+
+                                min-width: 80px;
+                            
+                                @include justify-content(center);
+                                
+                                &:hover, &:active, &:focus {
+                                    background: $app-brand-primary-dark;
+                                    border-color: $app-brand-primary-dark;
+                                    outline: none;
+                                }
+
+                                &.dx-state-hover {
+                                    background: $app-brand-primary-dark;
+                                    border-color: $app-brand-primary-dark;
+                                    outline: none;
+                                }
+
+                                .dx-button-content {
+                                    .dx-button-text {
+                                        color: $white;
+                                    }
+                                }
+                            }
+                            .dx-popup-cancel {
+                                background: $app-brand-secondary;
+                                border-color: $app-brand-primary;
+                                min-width: 80px;
+                            
+                                @include justify-content(center);
+                            
+                                &:hover, &:active, &:focus  {
+                                    outline: none;
+                                    background: $app-brand-primary-disable;
+                                }
+ 
+                                &.dx-state-hover  {
+                                    outline: none;
+                                    background: $app-brand-primary-disable;
+                                }
+                            
+                                &[disabled]{
+                                    color: #9D999A;
+                                    background: $neutrals-color4;
+                                    border-color: $secondary-btn-disabled;
+                                    // border-color: lighten(desaturate($app-brand-primary, 61.41), 65.49);
+                                }
+                                .dx-button-content {
+
+                                    .dx-button-text {
+                                        color: $app-brand-primary;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

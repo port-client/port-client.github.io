@@ -1,0 +1,373 @@
+
+
+.app-l-list-filter-wrap {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 200px;
+    overflow-x: auto;
+    padding: 7px 0px;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+    .app-l-list-filter {
+        width: 100%;
+        min-width: 851px;
+        height: auto;
+        min-height: 200px;
+    
+        @include flexbox();
+        @include flex-shrink(0);
+
+        .app-l-list-filter-left {
+            min-width: 322px;
+
+            @include flex-shrink(0);
+            @include flexbox();
+            @include flex-direction(column);
+
+            .app-l-control-group {
+                min-width: 0;
+                
+                @include flexbox();
+                @include flex-shrink(0);
+                @include flex-direction(column);
+                
+                + .app-l-control-group {
+                    margin-top: 16px;
+                }
+
+                .form-group {
+                    margin-bottom: 0;
+                    
+                    + .form-group {
+                        margin-top: 4px;
+                    }
+                }
+            }
+        }
+
+        .app-l-list-filter-right {
+            margin-left: 30px;
+            min-width: 0;
+
+            @include flex-shrink(0);
+            @include flexbox();
+            @include flex-direction(column);
+
+            
+        }
+    }
+}
+
+.app-l-condition-listing {
+    max-width: 486px;
+    width: 100%;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+    .app-c-list-label {
+        color: $text-color;
+        font-size: 11px;
+        font-weight: 500;
+        display: block;
+        line-height: 14px;
+        margin-bottom: 2px;
+        width: 100%;
+    }
+
+    .app-l-listing-view {
+
+        width: 450px;
+        max-height: 187px;
+        min-height: 187px;
+        height: 100%;
+        overflow-y: auto;
+        padding: 0px;
+        border: 1px solid $form-control-border;
+        background: $white;
+        padding: 4px 0px;
+    
+        @include transition(border ease 0.3s, color ease 0.3s, box-shadow ease 0.3s, margin 0.3s ease);
+        @include border-radius(3px);
+        @include flexbox();
+        @include flex-direction(column);
+
+    }
+}
+
+.app-l-listing-data {
+    width: 100%;
+    padding: 4px 0 4px 10px;
+    font-size: 0;
+
+    @include flexbox();
+    @include align-items(flex-start);
+    @include flex-shrink(0);
+
+    &:hover {
+        .app-l-listing-data-control {
+            > i {
+                opacity: 1;
+            }
+        }
+    }
+
+    .app-l-listing-data-text {
+        min-width: 0;
+        padding: 0 10px 0 0;
+        margin: 0;
+        color: $text-color;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 14px;
+        max-width: 100%;
+        white-space: normal;
+
+        @include transition(opacity 0.2s ease);
+    }
+    
+    .app-l-listing-data-control {
+        padding: 0 10px;
+        cursor: pointer;
+        margin-left: auto;
+        
+        @include flex-shrink(0);
+        
+        > i {
+            opacity: 0;
+            color: $text-color;
+            font-size: 11px;
+            line-height: normal;
+
+            @include transition(opacity 0.2s ease);
+        }
+    }
+}
+
+// Devextreme listing widget for Reports
+
+.dx-collection {
+    &.app-l-dx-lister {
+        min-height: 0;
+
+        @include flexbox();
+        @include flex-direction(column);
+        @include flex-shrink(0);
+
+        .dx-scrollable-wrapper {
+            min-height: 0;
+        
+            @include flexbox();
+            @include flex-direction(column);
+            @include flex-shrink(0);
+
+            .dx-scrollable-container {
+                min-height: 0;
+        
+                @include flexbox();
+                @include flex-direction(column);
+                @include flex-shrink(0);
+
+                .dx-scrollable-content {
+                    min-height: 0;
+        
+                    @include flexbox();
+                    @include flex-direction(column);
+                    @include flex-shrink(0);
+                    
+                    .dx-scrollview-content {
+                        min-height: 0;
+                        
+                        @include flex-shrink(0);
+                        
+                        .dx-item {
+                            min-height: 0;
+                            border-top: none;
+    
+                            @include flex-shrink(0);
+                            
+                            .dx-item-content {
+                                min-height: 0;
+                                padding: 0;
+        
+                                @include flex-shrink(0);
+                            }
+
+                            &.dx-list-item-selected {
+                                background-color: $select-dropdown-item-select-bg;
+                                color: $white;
+                                
+                                .dx-item-content {
+                                    .app-l-listing-data {
+                                        .app-l-listing-data-text {
+                                            color: $white;
+                                        }
+                                        .app-l-listing-data-control {
+                                            > i {
+                                                color: $white;
+                                                opacity: 1;
+                                            }
+                                        }
+                                    }
+                                }
+                  
+                                &.dx-state-hover, &.dx-state-active {
+                                    color: $white;
+                                    background-color: $select-dropdown-item-select-bg;
+
+                                    .dx-item-content {
+                                        .app-l-listing-data {
+                                            .app-l-listing-data-text {
+                                                color: $white;
+                                            }
+                                            .app-l-listing-data-control {
+                                                > i {
+                                                    color: $white;
+                                                    opacity: 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            &.dx-state-focused {
+                                background-color: $select-dropdown-item-select-bg;
+                                color: $white;
+
+                                .dx-item-content {
+                                    .app-l-listing-data {
+                                        .app-l-listing-data-text {
+                                            color: $white;
+                                        }
+                                        .app-l-listing-data-control {
+                                            > i {
+                                                opacity: 1;
+                                                color: $white;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                &.dx-state-hover, &.dx-state-active {
+                                    color: $white;
+                                    background-color: $select-dropdown-item-select-bg;
+
+                                    .dx-item-content {
+                                        .app-l-listing-data {
+                                            .app-l-listing-data-text {
+                                                color: $white;
+                                            }
+                                            .app-l-listing-data-control {
+                                                > i {
+                                                    opacity: 1;
+                                                    color: $white;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.dx-state-hover {
+                                background-color: $select-dropdown-item-bg;
+                                color: $select-dropdown-item-text;
+
+                                .dx-item-content {
+                                    .app-l-listing-data {
+                                        .app-l-listing-data-text {
+                                            opacity: 1;
+                                            color: $select-dropdown-item-text;
+                                        }
+                                        .app-l-listing-data-control {
+                                            > i {
+                                                opacity: 1;
+                                                color: $select-dropdown-item-text;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.dx-state-active {
+                                color: $white;
+                                background-color: $select-dropdown-item-select-bg;
+
+                                .dx-item-content {
+                                    .app-l-listing-data {
+                                        .app-l-listing-data-text {
+                                            color: $white;
+                                        }
+                                        .app-l-listing-data-control {
+                                            > i {
+                                                opacity: 1;
+                                                color: $white;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }   
+    }
+}
+
+.app-l-clustered-controls {
+    @media screen and (max-width: 767px) {
+        .form-group {
+            width: 100%;
+        }
+    }
+}
+
+.app-l-modal-text {
+    font-size: 14px;
+    line-height: 21px;
+    color: $text-dark-extra;
+    margin: 0;
+}
+
+.app-l-page-heading {
+    width: 100%;
+    min-width: 0px;
+    padding: 16px;
+
+    @include flexbox();
+    @include align-items(center);
+    @include flex-shrink(0);
+
+    .app-l-heading--h3 {
+        margin: 0;
+    }
+
+    &.p-bottom-4 {
+        padding-bottom: 4px;
+    }
+}
+
+.dx-list {
+    .dx-empty-message {
+        border-top: none;
+        color: $text-dark-normal;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+    }
+}
+
+.app-l-scaling-modal {
+    .modal-content { 
+        min-height: 370px; 
+
+        @media screen and (max-width: 576px) {
+            height: 100%;
+        }
+    }
+}
+

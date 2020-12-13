@@ -1,0 +1,31 @@
+
+@mixin transform($transform...) {
+	transform: $transform;
+	-webkit-transform: $transform;
+	-moz-transform: $transform;
+	-ms-transform: $transform;
+	-o-transform: $transform;
+}
+
+@mixin transform-origin($transformOrigin...){
+	transform-origin: $transformOrigin;
+	-webkit-transform-origin: $transformOrigin;
+	-moz-transform-origin: $transformOrigin;
+	-ms-transform-origin: $transformOrigin;
+	-o-transform-origin: $transformOrigin;
+}
+@mixin transform-style($transformStyle...){
+	transform-style: $transformStyle;
+	-webkit-transform-style: $transformStyle;
+	-moz-transform-style: $transformStyle;
+	-ms-transform-style: $transformStyle;
+	-o-transform-style: $transformStyle;
+}
+
+@mixin noTransform($transformStyle...){
+	transform-style: none !important;
+	-webkit-transform-style: none !important;
+	-moz-transform-style: none !important;
+	-ms-transform-style: none !important;
+	-o-transform-style: none !important;
+}
