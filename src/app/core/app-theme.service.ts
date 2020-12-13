@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 const Color = require('color');
-const colorString = require('color-string');
 
 @Injectable({
   providedIn: 'root'
