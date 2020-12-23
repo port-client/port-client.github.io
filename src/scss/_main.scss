@@ -1,0 +1,65 @@
+
+// Bootstrap
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+// @import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+// Variables
+
+@import "variables/variables";
+@import "theme/theme";
+
+// Mixins
+
+@import "core/mixins/custom-scrollbar";
+@import "src/scss/core/mixins/flexbox";
+@import "src/scss/core/mixins/transitions";
+@import "src/scss/core/mixins/box-shadow";
+@import "src/scss/core/mixins/border-radius";
+@import "src/scss/core/mixins/transform";
+@import "src/scss/core/mixins/button-size";
+
+
+// Core
+
+@import "core/base.scss";
+@import "core/fonts";
+@import "core/font-icons";
+
+
+//Components
+
+@import "components/grid";
+@import "components/datepicker";
+@import "components/tabs";
+@import "components/form";
+@import "components/accordion";
+@import "components/modal";
+@import "components/filter";
+@import "components/tooltip";
+@import "components/breadcrumb";
+@import "components/file-upload";
+@import "components/chips";
+@import "components/colorbox";
+@import "components/toast";
+@import "components/loaders";
+@import "components/carousal";
+@import "components/reports";
+
+
+//Layout
+
+@import "layout/sidebar";
+@import "layout/layout";
+@import "layout/structure";
+
+// Screen components
+
+@import "screen-components/filter-grid";
+@import "screen-components/generic-modal";
+@import "screen-components/list-filter";
+
+
+
+
+

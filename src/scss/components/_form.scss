@@ -1,0 +1,1394 @@
+@import "../theme/theme";
+@import "../variables/variables";
+@import "../core/mixins/box-shadow";
+@import "../core/mixins/border-radius";
+@import "../core/mixins/transitions";
+@import "../core/mixins/flexbox";
+@import "../core/mixins/transform";
+
+.form-control {
+    padding: 6px 10px;
+    height: 30px;
+    min-height: 30px;
+    font-size: 12px;
+    font-weight: 400;
+    color: $text-dark-extra;
+    border: 1px solid $form-control-border;
+    background: $white;
+
+    @include transition(border ease 0.3s, color ease 0.3s, box-shadow ease 0.3s, margin 0.3s ease);
+    @include border-radius(3px);
+
+    &::placeholder {
+        color: $text-dark-normal;
+        opacity: 1;
+        /* Firefox */
+    }
+
+    &:-ms-input-placeholder {
+        color: $text-dark-normal;
+    }
+
+    &::-ms-input-placeholder {
+        color: $text-dark-normal;
+    }
+
+    &:focus {
+        border-color: $form-control-active-border;
+
+        @include noShadow();
+    }
+
+    &[disabled] {
+        border-color: $form-control-disable-border;
+        background: $form-control-disable-background;
+        cursor: not-allowed;
+    }
+
+    &[readonly] {
+        border-color: $form-control-disable-border;
+        background: $form-control-disable-background;
+        cursor: not-allowed;
+
+        &.selectable-readonly {
+            background: $white;
+        }
+    }
+}
+
+textarea {
+    resize: none;
+    height: auto;
+}
+.app-c-form--position{
+    position: relative;
+}
+
+
+input {
+    &.app-c-placeholder-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.help-block-formatter {
+    display: none;
+    color: $white;
+    background: $default-red;
+    text-align: left;
+    font-weight: 500;
+    font-size: 11px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 2px;
+    line-height: 18px;
+    padding: 1px 8px;
+
+    @include border-radius(3px);
+}
+
+.form-group {
+    margin-bottom: 16px;
+    position: relative;
+    
+    .help-block{
+        @extend .help-block-formatter;
+    }
+    .app-c-form--label {
+        color: $text-color;
+        font-size: 11px;
+        font-weight: 500;
+        display: block;
+        line-height: 14px;
+        margin-bottom: 2px;
+
+        &.app-l-theme-label {
+            max-width: 100%;
+            min-width: 0;
+            margin-bottom: 8px;
+        
+            @include inline-flex();
+            @include align-items(center);
+        
+            > span {
+                line-height: 16px;
+        
+                @include truncate();
+            }
+        
+            .app-l-color__sample {
+                margin-left: 8px;
+            }
+        }
+    }
+    .app-c-form--value{
+        font-size: 13px;
+        font-weight: 400;
+        color: $text-color;
+        display: block;
+        line-height: normal;
+    }
+
+    &.app-c-form--tex-value{
+        .form-control{
+            padding-right: 64px;
+        }
+        .app-c-form__value{
+            color: $text-dark-extra;
+            font-size: $text-md;
+            font-weight: 400;
+            position: absolute;
+            line-height: normal;
+            top: 7px;
+            right: 7px;
+        }
+    }
+    &.app-c-form--mandatory {
+        .app-c-form--label {
+            &:after {
+                content: '*';
+                color: $form-error;
+                display: inline-block;
+                font-size: 16px;
+                line-height: 10px;
+                margin-left: 3px;
+                position: relative;
+                top: 1px;
+            }
+        }
+    }
+}
+
+.app-l-validity-reaction {
+    border-color: $validation-red;
+    background: $form-error-background;
+
+    &:focus {
+        border-color: $validation-red;
+    }
+
+    @include boxShadow(
+        0 0.3px 0.9px rgba(221, 0, 0, 0.024),
+        0 0.9px 2.4px rgba(221, 0, 0, 0.035),
+        0 2.1px 5.7px rgba(221, 0, 0, 0.046),
+        0 5px 14px rgba(221, 0, 0, 0.07)                      
+    );
+
+    ~ .help-block {
+        display: block;
+        opacity: 0;
+    }
+}
+
+.dx-selectbox {
+    border-color: $form-control-border;
+    height: 30px;
+
+    @include border-radius(3px);
+    @include transition(border ease 0.2s);
+
+    .dx-selectbox-container {
+        .dx-texteditor-container {
+            .dx-texteditor-input {
+                padding: 3px 0px 2px 8px;
+                height: 26px;
+                min-height: 26px;
+                line-height: normal;
+                font-size: $text-md;
+                color: $text-color;
+                font-family: $body-font;
+                background: transparent;
+            }
+
+            .dx-placeholder {
+                font-size: $text-md;
+                color: $text-dark-normal;
+
+                &:before {
+                    height: 100%;
+                    line-height: normal;
+                    padding: 7px 8px 8px 8px;
+
+                    @include flexbox();
+                    @include align-items(center);
+                }
+            }
+        }
+
+        .dx-texteditor-buttons-container {
+            .dx-dropdowneditor-button {
+                width: 26px;
+                padding: 0 7px;
+
+                .dx-button-content {
+                    .dx-dropdowneditor-icon {
+                        width: 100%;
+                        background: none;
+                        border: none;
+                        font-size: 7px;
+                        color: #898e97;
+
+                        @include border-radius(0);
+
+                        &:before {
+                            content: "\e907";
+                            font-family: 'port-client';
+                            font-size: 10px;
+                            line-height: 10px;
+                            margin-top: -3.5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.dx-state-focused, &.dx-state-active {
+    border-color: $form-control-active-border;
+    }
+    &.dx-state-disabled{
+        border-color: $form-control-disable-border;
+        background: $form-control-disable-background;
+        opacity: 1;
+        cursor: not-allowed;
+    }
+
+    &.dx-tagbox {
+        .dx-selectbox-container {
+            .dx-texteditor-container {
+                .dx-texteditor-input-container {
+                    padding: 0px;
+                    overflow: auto;
+                    max-width: 100%;
+
+                    .dx-tag {
+                        .dx-tag-content {
+                            padding: 2px 25px 2px 6px;
+                            margin: 2px 0 2px 4px;
+                            background-color: $tag-chip-bg;
+                            color: $text-dark-extra;
+                            font-size: 12px;
+                            line-height: 18px;
+                            max-width: 100%;
+                            white-space: normal;
+                            border: solid 1px transparent;
+
+                            @include border-radius(3px);
+
+                            .dx-tag-remove-button {
+                                background-color: transparent;
+                                width: 20px;
+
+                                @include inline-flex();
+                                @include flex-shrink(0);
+                                @include border-radius(0 3px 3px 0px);
+                                @include transition(background-color 0.2s ease);
+
+                                &:hover {
+                                    background-color: $tag-close-bg;
+                                    
+                                    &:before {
+                                        color: $white;
+                                    }
+                                }
+
+                                &:before {
+                                    content: "\e936" !important;
+                                    font-family: 'port-client' !important;;
+                                    color: $text-dark-extra;
+                                    font-size: 9px;
+                                    background-color: transparent;
+                                    width: 20px;
+                                    height: 20px;
+                                    position: relative;
+                                    top: 0;
+                                    right: 0;
+                                    margin-top: 0;
+
+                                    @include inline-flex();
+                                    @include align-items(center);
+                                    @include justify-content(center);
+                                    @include transition(color 0.2s ease);
+                                    @include transform(rotate(0deg) !important);
+                                }
+                                &:after {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                .dx-texteditor-input {
+
+                }
+            }
+        }
+
+        &.dx-texteditor-empty {
+            .dx-selectbox-container {
+                .dx-texteditor-container {
+                    .dx-texteditor-input-container {
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.has-error {
+
+    &:hover {
+        .app-c-form--position {
+            .form-control {
+                &.ng-dirty {
+                    &.ng-invalid {
+                        ~ .help-block {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                &.conditional-validity {
+                    ~ .help-block {
+                        opacity: 1;
+                    }
+                }
+            }
+            
+            &.form-control-wrap {
+                overflow: visible;
+            }
+
+            .dx-selectbox {
+                &.error-select {
+                    ~ .help-block {
+                        opacity: 1;
+                    }
+                }
+                &.ng-invalid {
+                    &.ng-touched {
+                        ~ .help-block {
+                            opacity: 1;
+                        }
+                    }
+                }
+                &.conditional-validity {
+                    &.ng-touched {
+                        ~ .help-block {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            .dx-datebox {
+                &.ng-invalid {
+                    &.ng-touched {
+                        ~ .help-block {
+                            opacity: 1;
+                        }
+                    }
+                }
+                &.conditional-validity {
+                    &.ng-touched {
+                        ~ .help-block {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .app-c-form--position {
+        .form-control {
+            &.ng-dirty {
+                &.ng-invalid {
+                    @extend .app-l-validity-reaction;
+                }
+            }
+            
+            &.conditional-validity {
+                @extend .app-l-validity-reaction;
+            }
+        }
+        .help-block {
+            display: none;
+            pointer-events: none;
+    
+            @include transition(opacity 0.3s ease, visibility 0.3s ease);
+    
+            &.error {
+                display: block;
+            }
+        }
+        .dx-selectbox {
+            &.error-select {
+                &.dx-texteditor {
+                    &.dx-editor-outlined {
+                        border-color: $validation-red;
+                        background: $form-error-background;
+                    }
+                }
+
+                ~ .help-block {
+                    display: block;
+                    opacity: 0;
+                }
+            }
+
+            &.ng-invalid {
+                &.ng-touched {
+                    &.dx-texteditor {
+                        &.dx-editor-outlined {
+                            border-color: $validation-red;
+                            background: $form-error-background;
+                        }
+                    }
+                    ~ .help-block {
+                        display: block;
+                        opacity: 0;
+                    }
+                }
+            }
+
+            &.conditional-validity {
+                &.ng-dirty {
+                    &.dx-editor-outlined {
+                        border-color: $validation-red;
+                        background: $form-error-background;
+                    }
+                    ~ .help-block {
+                        display: block;
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+        .dx-datebox {
+            &.ng-invalid {
+                &.ng-touched {
+                    &.dx-texteditor {
+                        &.dx-editor-outlined {
+                            border-color: $validation-red;
+                            background: $form-error-background;
+                        }
+                    }
+                    ~ .help-block {
+                        display: block;
+                        opacity: 0;
+                    }
+                }
+            }
+
+            &.conditional-validity {
+                &.ng-touched {
+                    &.dx-editor-outlined {
+                        border-color: $validation-red;
+                        background: $form-error-background;
+                    }
+                    ~ .help-block {
+                        display: block;
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .app-c-form--inline-label {
+        .app-c-group--input {
+            .app-l-group__input-form {
+                .dx-selectbox {
+                    // border-color: $form-error;
+                }
+            }
+        }
+    }
+
+    &.is-valid {
+        position: relative;
+
+        .help-block {
+            position: absolute;
+            font-size: 17px;
+            min-width: 230px;
+            color: $form-error;
+            user-select: none;
+        }
+    }
+}
+
+.app-l-validator-style {
+    border-color: $form-error;
+    background: $form-error-background;
+
+    @include boxShadow(
+        0 0.3px 0.9px rgba(221, 0, 0, 0.024),
+        0 0.9px 2.4px rgba(221, 0, 0, 0.035),
+        0 2.1px 5.7px rgba(221, 0, 0, 0.046),
+        0 7px 19px rgba(221, 0, 0, 0.07)                      
+    );
+
+    ~ .app-l-validation-wrap {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+
+        @include transition(opacity 0.3s ease, visibility 0.3s ease);
+    }
+
+    &:hover {
+        ~ .app-l-validation-wrap {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.app-l-validation-enabled {
+
+    position: relative;
+
+    .form-control {
+        &.ng-dirty {
+            &.ng-invalid {
+                @extend .app-l-validator-style;
+            }
+        }
+
+        &.conditional-validity {
+            @extend .app-l-validator-style;
+        }
+    }
+
+    .app-l-pay__field, .app-l-group__input-form {
+        .app-l-validation-wrap {
+            top: -22px;
+        }
+    }
+}
+
+.app-l-validation-wrap {
+    position: absolute;
+    right: 0;
+    top: -7px;
+    bottom: auto;
+    left: auto;
+    min-width: 50px;
+    max-width: 100%;
+    display: none;
+    pointer-events: none;
+
+    @include border-radius(4px);
+    @include boxShadow(0px 0px 0px rgba(0, 0, 0, 0.5));
+
+    .app-l-validation-content {
+        
+        text-align: left;
+        padding: 4px 8px;
+        width: 100%;
+        font-size: 11px;
+        color: $white;
+        font-weight: 400;
+        line-height: 13px;
+        position: relative;
+        background: $validation-red;
+
+        @include border-radius(4px);
+    }
+}
+
+
+.app-c-group--input{
+    position: relative;
+
+    @include flexbox();
+
+    .app-l-group__input-form{
+        width: 100%;
+        position: relative;
+    }
+    .app-l-group__icon{
+        margin-left: 4px;
+
+        @include flex-shrink(0);
+        @include align-self(center);
+
+        .app-c-btn{
+            + .app-c-btn{
+                margin-left: 4px;
+            }
+        }
+    }
+
+    .app-l-control__icon{
+        margin-left: 30px;
+
+        @include flex-shrink(0);
+        @include align-self(center);
+
+        .app-c-btn{
+            + .app-c-btn{
+                margin-left: 4px;
+            }
+        }
+    }
+
+    &.app-l-checkbox-form {
+        @media screen and (max-width: 767px) {
+            @include flex-wrap(wrap);
+        }
+
+        .app-l-group__icon, .app-l-group__input-form {
+            margin-left: 0;
+            margin-right: 16px;
+
+            @media screen and (max-width: 767px) {
+                margin-right: 8px;
+            }
+            @media screen and (max-width: 576px) {
+                width: 100%;
+                margin-right: 0;
+
+                @include flex-shrink(1);
+            }
+        }
+    }
+}
+
+// Grid select
+
+.app-c-grid-select {
+    position: relative;
+
+    .dx-selectbox {
+		border: none !important;
+        height: auto;
+        width: 100%;
+        position: absolute;
+        left: 0;
+
+        .dx-selectbox-container {
+            .dx-texteditor-container {
+                .dx-texteditor-input {
+                    padding: 3px 0px 3px 8px;
+                    height: 26px;
+                    min-height: 26px;
+                    line-height: normal;
+                    font-size: $text-md;
+                    color: $text-color;
+                    font-family: $body-font;
+                    background: transparent;
+                }
+
+                .dx-placeholder {
+                    font-size: $text-md;
+                    color: $text-color;
+
+                    &:before {
+                        height: 100%;
+                        line-height: normal;
+                        padding: 7px 8px 8px 8px;
+
+                        @include flexbox();
+                        @include align-items(center);
+                    }
+                }
+            }
+
+            .dx-texteditor-buttons-container {
+                .dx-dropdowneditor-button {
+                    width: 26px;
+                    padding: 0 7px;
+
+                    .dx-button-content {
+                        .dx-dropdowneditor-icon {
+                            width: 100%;
+                            background: none;
+                            border: none;
+                            font-size: 7px;
+                            color: #898e97;
+
+                            @include border-radius(0);
+
+                            &:before {
+                                content: "\e907";
+                                font-family: 'port-client';
+                                font-size: 10px;
+                                line-height: 10px;
+                                margin-top: -4px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.dx-state-focused,
+        &.dx-state-active {
+            border-color: $grid-selected-row-border;
+            // border-color: darken($generic-border-color, 10%);
+        }
+    }
+}
+
+
+
+// Drag and drop
+
+.app-c-drag{
+    min-height: 93px;
+    background: rgba($neutrals-color4, 0.5);
+    border: 1px dashed rgba($neutrals-color2, 0.5);
+
+    @include border-radius(6px);
+
+    .app-l-drag-here{
+        min-height: 93px;
+        cursor: pointer;
+
+        @include flexbox();
+        @include flex-direction(column);
+        @include align-items(center);
+        @include justify-content(center);
+
+        .app-l-drag__icon{
+            font-size: 20px;
+            color: $app-brand-primary;
+            line-height: normal;
+            display: inline-block;
+            margin-bottom: 6px;
+
+            i{
+                display: block;
+            }
+        }
+        .app-l-drag__text{
+            color: $text-color-light;
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 400;
+
+            a{
+                cursor: pointer;
+                color: $app-brand-primary;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .app-l-drag__list{
+        padding: 26px 17px;
+
+        .app-l-drag__l-block{
+            @include flexbox();
+            @include align-items(center);
+
+            + .app-l-drag__l-block{
+                margin-top: 6px;
+            }            
+            .app-l-drag_l-icon{
+                margin-right: 10px;
+                font-size: 21px;
+                color: $app-brand-primary;
+
+                @include flex-shrink(0);
+                @include align-self(flex-start);
+            }
+            .app-l-drag_l-file{
+                width: 100%;
+
+                .app-l-drag__l-file-name{
+                    display: block;
+                    color: $text-color-light;
+                    font-size: 12px;
+                    line-height: normal;
+                    font-weight: 400;
+                    margin-bottom: 2px;
+                }
+                .app-l-drag__progress{
+                    height: 6px;
+                    position: relative;
+                    background: $neutrals-color3;
+                    overflow: hidden;
+                    margin-bottom: 2px;
+
+                    @include border-radius(5px);
+
+                    .app-l-drag__p-fill{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 0%;
+                        height: 100%;
+                        background: $app-brand-primary;
+
+                        @include transition(width ease 0.2s);
+                        @include border-radius(5px);
+                    }
+                }
+                .app-l-drag__file-size{
+                    color: $text-color-light;
+                    font-size: 12px;
+                    line-height: 18px;
+                    display: block;
+                }
+            }
+            .app-l-drag_l-delete{
+                margin-left: 18px;
+
+                @include flex-shrink(0);
+            }
+        }
+    }
+}
+.app-l-onboard-form-group {
+    padding-bottom: 16px;
+    position: relative;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+    .app-l-onboard-form-label {
+
+        color: $text-color-light;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 14px;
+        text-align: left;
+        margin: 0;
+        
+        + .form-control {
+            margin-top: 4px;
+        }
+        + .form-control-wrap {
+            margin-top: 3px;
+        }
+        + .app-c-form--position {
+            margin-top: 3px;
+        }
+    }
+
+    .form-control-wrap {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        
+        @include border-radius(2px);
+        
+        .form-control {
+            
+            border: solid 1px $form-control-border;
+            height: 40px;
+            width: 100%;
+            padding: 10px 14px 11px 14px;
+            font-size: 12px;
+            line-height: 12px;
+
+            @include border-radius(3px);
+            @include transition(border-color 0.3s ease-in-out);
+
+            &:-webkit-input-placeholder { 
+                color: $form-control-border;
+            }
+            &:-moz-placeholder { 
+                color: $form-control-border;
+            }
+            &:-ms-input-placeholder { 
+                color: $form-control-border;
+            }
+            &:-moz-placeholder { 
+                color: $form-control-border;
+            }
+
+            &:focus {
+                border-color: $app-brand-primary;
+            }
+        }
+
+        .help-block{
+            @extend .help-block-formatter;
+        }
+
+        &.app-l-password-control {
+
+            .form-control {
+                padding-right: 32px;
+            }
+
+            .app-l-field-visibility {
+
+                width: 32px;
+                height: 40px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: auto;
+                left: auto;
+                cursor: pointer;
+
+                @include flexbox();
+                @include flex-shrink(0);
+                @include flex-grow(0);
+                @include align-items(center);
+                @include justify-content(center);
+
+                &:hover {
+                    i {
+                        color: $black;
+                    }
+                }
+
+                > i {
+                    margin: auto;
+                    font-size: 18px;
+                    color: $neutrals-color2;
+
+                    @include transition(color 0.3s ease-in-out);
+                }
+
+                &.full-height {
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    .app-l-form-validation-text {
+
+        width: 100%;
+        text-align: right;
+        font-weight: 400;
+        font-size: 11px;
+        color: $form-error;
+        cursor: default;
+        line-height: normal;
+        
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: auto;
+        top: auto;
+    }
+}
+
+.app-c-form--inline-label{
+    @include flexbox();
+    
+    @media screen and (max-width:767px){
+        display: block;
+    }
+
+    .app-l-form__inline-left{
+        width: 100%;
+        min-width: 140px;
+    }
+    .app-l-form__inline-right{
+        padding-left: 8px;
+        max-width: 100%;
+        min-width: 0;
+
+        @include flex-shrink(0);
+        @include align-self(center);
+        @include inline-flex();
+
+        @media screen and (max-width:767px){
+            padding-left: 0;
+            padding-top: 3px;
+        }
+
+        .app-l-form__inline-value{
+            color: $text-color;
+            font-weight: 400;
+            font-size: 12px;
+            max-width: 100%;
+            display: block;
+            min-width: 0;
+            max-width: 200px;
+
+            @include truncate();
+
+            @media screen and (max-width: 576px) {
+                max-width: 300px;
+            }
+
+            &.app-l-text-60 {
+                max-width: 60px;
+                min-width: 0px;
+
+                @include truncate();
+
+                @media screen and (max-width: 480px) {
+                    max-width: 100%;
+                }
+            }
+            &.app-l-text-120 {
+                max-width: 120px;
+                min-width: 0px;
+
+                @include truncate();
+
+                @media screen and (max-width: 480px) {
+                    max-width: 100%;
+                }
+            }
+            &.app-l-text-310 {
+                max-width: 310px;
+                min-width: 0px;
+
+                @include truncate();
+
+                @media screen and (max-width: 480px) {
+                    max-width: 100%;
+                }
+            }
+            &.app-l-text-160 {
+                max-width: 160px !important;
+                min-width: 0px;
+                
+                @include truncate();
+                
+                @media screen and (max-width: 480px) {
+                    max-width: 100%;
+                }
+            }
+            &.max-180 {
+                max-width: 180px !important;
+                min-width: 0px;
+
+                @include truncate();
+
+                @media screen and (max-width: 480px) {
+                    max-width: 100%;
+                }
+            }
+        }
+
+        &.app-l-btn-text {
+            @include inline-flex();
+            @include align-items(center);
+
+            .app-l-form__inline-value {
+                padding: 4px 0px;
+            }
+        }
+    }
+}
+.app-c-group--input-left{
+    margin-bottom: 16px;
+
+    @include flexbox();
+
+    .app-l-group__control{
+        padding-right: 8px;
+
+        @include flex-shrink(0);
+        @include align-self(center);
+
+        .app-c-checkbox{
+            margin-top: 20px;
+        }
+    }
+    .app-l-group__form{
+        position: relative;
+        width: 100%;
+    }
+}
+
+.app-c-search{
+    position: relative;
+
+    i{
+        font-size: 14px;
+        position: absolute;
+        top: 8px;
+        left: 11px;
+        color: $text-dark-extra;
+    }
+    .form-control{
+        padding-left: 32px;
+    }
+}
+
+.app-c-form--150{
+    width: 100%;
+    max-width: 150px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--486{
+    width: 100%;
+    max-width: 486px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+.app-c-form--708{
+    width: 100%;
+    max-width: 708px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--238{
+    width: 100%;
+    max-width: 238px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--280{
+    width: 100%;
+    max-width: 280px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--228{
+    width: 100%;
+    max-width: 228px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--184{
+    width: 100%;
+    max-width: 184px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--246{
+    width: 100%;
+    max-width: 246px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--208 {
+    width: 100%;
+    max-width: 208px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--320{
+    width: 100%;
+    max-width: 320px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--172{
+    width: 100%;
+    max-width: 172px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--226{
+    width: 100%;
+    max-width: 226px !important;
+    min-width: 226px !important;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--355{
+    width: 100%;
+    max-width: 355px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--350{
+    width: 100%;
+    max-width: 350px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--50p {
+    width: 100%;
+    max-width: calc(50%);
+    min-width: 486px;
+
+    @media screen and (max-width: 576px){
+        min-width: 100%;
+    }
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--80{
+    width: 100%;
+    max-width: 80px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--flat-70{
+    width: 100%;
+    max-width: 80px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--flat-90{
+    width: 100%;
+    max-width: 90px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form--auto {
+    min-width: 150px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .app-c-form--inline-label {
+        .app-l-form__inline-right {
+            @include flex-grow(1);
+
+            .app-l-form__inline-value  {
+                max-width: 100%;
+                min-width: 0;
+            }
+        }
+    }
+}
+
+.app-c-form--322{
+    width: 100%;
+    max-width: 322px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}   
+
+.app-c-form--246{
+    width: 100%;
+    max-width: 246px;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.app-c-form-min--179{
+    width: 100%;
+    min-width: 179px;
+    
+    @media screen and (max-width: 480px){
+        min-width: 100%;
+        max-width: 100%;
+    }
+}   
+
+.app-c-form-min--504 {
+    width: 100%;
+    min-width: 504px;
+    
+    @media screen and (max-width: 767px){
+        min-width: 100%;
+        max-width: 100%;
+    }
+}   
+
+.app-l-max-field-260 {
+    max-width: 260px;
+}
+
+.app-l-full-width-form {
+    margin: 0px;
+    width: 100%;
+
+    @include flexbox();
+    @include flex-wrap(wrap);
+}
+
+.app-l-half-width-form-group {
+    margin: 0px;
+    width: 50%;
+
+    @include flexbox();
+    @include flex-wrap(wrap);
+
+    @media screen and (max-width: 991px) {
+        width: 100%;
+    }
+}
+
+.mv-8 {
+    margin: 8px 0px !important;
+}
+
+.app-c-form-max-min-260 {
+    width: 100%;
+    max-width: 260px !important;
+    min-width: 260px !important;
+
+    @media screen and (max-width: 480px){
+        max-width: 100%;
+    }
+}
+
+.dx-sortable-dragging {
+    min-width: 200px;
+}
+
+.app-l-min-width-486 {
+    min-width: 486px;
+    
+    @media screen and (max-width: 1200px){
+        min-width: 150px;
+    }
+    @media screen and (max-width: 480px){
+        width: 100%;
+        max-width: 100%;
+    }
+}

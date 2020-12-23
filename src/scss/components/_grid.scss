@@ -1,0 +1,1661 @@
+// Remove most spacing between table cells.
+
+@import "../core/mixins/flexbox";
+@import "../core/mixins/transitions";
+@import "../core/mixins/transform";
+@import "../core/mixins/border-radius";
+@import "../core/mixins/truncate";
+@import "../core/mixins/box-shadow";
+@import "../theme/theme";
+@import "../variables/variables";
+
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    td, th {
+        padding: 0;
+    }
+}
+
+
+.app-c-grid {
+    height: 100%;
+    min-height: 0;
+    padding-bottom: 8px;
+    background: $white;
+    @include border-radius(6px);
+    
+    @include flexbox();
+    @include flex-direction(column);
+    
+    @media screen and (min-height: 400px) {
+        min-height: 280px;
+    }
+    @media screen and (max-height: 400px) {
+        min-height: 0;
+    }
+    
+    .app-l-grid-holder {
+        height: 100%;
+        min-height: 234px;
+        padding: 0 16px;
+        background-color: $white;
+    
+        @include flexbox();
+        @include flex-direction(column);
+
+        > .dx-widget {
+            min-height: 234px;
+            height: 100%;
+    
+            @include flexbox();
+            @include flex-direction(column);
+    
+            .dx-gridbase-container {
+                min-height: 234px;
+                height: auto !important;
+                
+                @include flexbox();
+                @include flex-direction(column);
+                @include flex-grow(1);
+    
+                > .dx-datagrid-columns-separator {
+                    height: auto !important;
+                    min-height: 71px;
+                    cursor: col-resize;
+                }
+                > .dx-datagrid-tracker {
+                    height: auto !important;
+                }
+    
+                .dx-datagrid-headers{
+                    border: solid 1px $table-border;
+                    background-color: $grid-header-bg;
+                    
+                    @include border-radius(4px 4px 0px 0px);
+    
+                    .dx-datagrid-content{
+                        .dx-datagrid-table{
+                            tbody{
+                                .dx-row{
+    
+                                    td{
+                                        line-height: normal;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: none;
+                                        color: $text-color;
+                                        font-size: 11px;
+                                        font-weight: 500;
+    
+                                        .dx-column-indicators{
+                                            .dx-header-filter{
+                                                color: $app-brand-primary;
+                                                margin: 0 3px;
+    
+                                                @include transition(color ease 0.2s);
+    
+                                                &:before{
+                                                    content: "\e916";
+                                                    font-family: $font-port-client;
+                                                    font-size: 13px;
+                                                    color: $white;
+                                                    position: relative;
+                                                    z-index: 1;
+    
+                                                    @include transition(color ease 0.2s);
+                                                }
+                                                &:after {
+                                                    background-color: $app-brand-primary;
+                                                    margin: -1px -3px -1px -3px;
+    
+                                                    @include border-radius(3px);
+                                                    @include transition(color ease 0.2s, background-color ease 0.2s);
+                                                }
+                                                &.dx-header-filter-empty{
+                                                    color: #b6b7b9;
+                                                    
+                                                    &:before{
+                                                        color: #b6b7b9;
+                                                    }
+                                                    &:after {
+                                                        background-color: transparent;
+                                                    }
+                                                    &:hover {
+                                                        color: #000000;
+    
+                                                        &:after {
+                                                            background-color: $white;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        .dx-datagrid-text-content {
+                                            text-transform: uppercase;
+                                        }
+                                    }
+    
+                                    &.dx-header-row {
+                                        min-height: 37px;
+    
+                                        td {
+                                            padding: 10px 8px 7px 8px;
+                                            
+                                            &:first-child {
+                                                padding: 10px 8px 7px 16px;
+                                            }
+                                            &:last-child {
+                                                padding: 10px 16px 7px 8px;
+                                            }
+    
+                                            + td {
+                                                border-left: 1px solid $grid-header-seperator;
+                                            }
+                                        }
+                                    }
+    
+                                    &.dx-datagrid-filter-row {
+                                        border-bottom: solid 1px transparent;
+                                        
+                                        td{
+                                            padding: 0px 8px 8px 8px;
+    
+                                            &:first-child {
+                                                padding: 0px 8px 7px 16px;
+                                            }
+                                            &:last-child {
+                                                padding: 0px 16px 7px 8px;
+                                            }
+    
+                                            &:not(:empty) {
+                                                ~ td {
+                                                    display: table-cell;
+                                                }
+                                            }
+    
+                                            &:empty {
+                                                padding: 3px;
+                                            }
+                                            
+                                            .dx-editor-container{
+                                                overflow: visible;
+    
+                                                .dx-textbox, .dx-numberbox{
+                                                    .dx-dropdowneditor-input-wrapper {
+                                                        overflow: visible;
+                                                    }
+                                                    .dx-texteditor-container{
+                                                        // border: solid 1px lighten($unfocussed-field-border, 20%);
+                                                        border: solid 1px $container-border;
+    
+                                                        @include border-radius(3px);
+                                                        @include transition(border-color 0.3s ease-in-out);
+                                                    }
+                                                    .dx-texteditor-input-container{
+                                                        position: relative;
+
+                                                        &:before {
+                                                            position: absolute;
+                                                            top: 0;
+                                                            left: 0;
+                                                            content: "\e93d" !important;
+                                                            font-family: 'port-client' !important;;
+                                                            font-size: 12px;
+                                                            width: 24px;
+                                                            height: 100%;
+                                                            padding: 5px 0px 4px 6px;
+
+                                                            @include inline-flex();
+                                                            @include align-items(center);
+                                                            @include justify-content(center);
+                                                        }
+    
+                                                        &:hover {
+                                                            ~ .dx-texteditor-buttons-container {
+                                                                .dx-button-mode-contained {
+                                                                    .dx-button-content {
+                                                                        .dx-dropdowneditor-icon {
+                                                                            color: $black;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+
+                                                        .dx-texteditor-input{
+                                                            border: none !important;
+                                                            height: 28px !important;
+                                                            min-height: 28px !important;
+                                                            padding-left: 24px !important;
+                                                            
+                                                            @extend .form-control;
+                                                        }
+    
+                                                        ~ .dx-texteditor-buttons-container {
+    
+                                                            .dx-button-mode-contained {
+                                                                height: 28px;
+                                                                border: none !important;
+                                                                width: 33px;
+                                                                min-width: 33px;
+    
+                                                                .dx-button-content {
+                                                                    .dx-dropdowneditor-icon {
+                                                                        color: $grid-field-icon;
+                                                                        // color: darken($form-control-border, 5%);
+    
+                                                                        @include transition(color 0.3s ease-in-out);
+                                                                    }
+                                                                }
+                                                                &:hover {
+                                                                    .dx-button-content {
+                                                                        .dx-dropdowneditor-icon {                                                                            color: $black;
+                                                                            color: $black;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .dx-invalid-message {
+                                                        > .dx-overlay-wrapper {
+                                                            visibility: visible;
+
+                                                            @include transform(translate(0px, -28px) !important);
+                                                            @include transform-origin(top right);
+                                                            
+                                                            .dx-invalid-message-content {
+                                                                @include transform(translate(0px, 0px) !important);
+                                                                @include transform-origin(top right);
+
+                                                                opacity: 1;
+                                                                visibility: visible;
+                                                                padding: 2px 8px 4px 8px;
+                                                                background: $validation-red;
+                                                                line-height: 16px;
+                                                                font-size: 11px;
+                                                                right: 0 !important;
+                                                                left: auto !important;
+                                                                top: -100% !important;
+                                                            }
+                                                        }
+                                                    }
+    
+                                                    &.dx-state-hover {
+                                                        .dx-texteditor-container {
+                                                            border-color: $form-control-border;
+                                                        }
+                                                    }
+                                                    &.dx-state-focused {
+                                                        .dx-texteditor-container {
+                                                            border-color: $dx-textfield-active-border;
+                                                        }
+                                                    }
+                                                }
+                                                .dx-dropdowneditor{
+                                                    margin-left: 0;
+                                                }
+                                            }
+
+                                            + td {
+                                                border-left: 1px solid $grid-header-seperator;
+                                            }
+                                            
+                                            .dx-editor-with-menu {
+                                                .dx-menu {
+                                                    display: none;
+                                                }
+                                            }
+                                        }
+                                    }
+    
+                                    &.dx-freespace-row {
+                                        height: 1px !important;
+                                    
+                                        > td {
+                                            background: $white;
+                                            height: auto !important;
+        
+                                            &:empty {
+                                                padding: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+    
+                        }
+                        .dx-datagrid-focus-overlay{
+                            display: none;
+                        }
+                    }
+
+                    .dx-datagrid-content-fixed {
+                        .dx-datagrid-table-fixed {
+                            tbody {
+                                .dx-row {
+                                    td {
+                                        &:not(.dx-pointer-events-none) {
+                                            &.dx-cell-focus-disabled {
+                                                background-color: $grid-header-bg;
+                                            }
+                                        }
+                                    }
+
+                                    &.dx-datagrid-filter-row {
+                                        td {
+                                            min-height: 37px;
+                                            height: 37px;
+
+                                            &:not(.dx-pointer-events-none) {
+                                                &:not(.dx-first-cell) {
+                                                    background-color: $grid-header-bg;
+                                                    // border-bottom: solid 1px  $table-border;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+    
+                    &.dx-state-focused {
+                        .dx-header-row {
+                            td {
+                                &:focus {
+                                    outline: solid 1px $grid-focused-header-cell;
+                                    // outline: solid 1px rgba($app-brand-primary, 0.75);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .dx-datagrid-rowsview{
+                    border-top: none;
+                    border-left: solid 1px $table-border;
+                    border-right: solid 1px $table-border;
+                    border-bottom: solid 1px $table-border;
+                    min-height: 128px;
+                    height: 100%;
+                    
+                    @include border-radius(0px 0px 4px 4px);
+    
+                    .dx-datagrid-content{
+                        .dx-datagrid-table{
+                            .dx-row{
+                                border-top: solid 1px transparent;
+                                border-bottom: solid 1px transparent;
+    
+                                &:first-child {
+                                    td {
+                                        border-top: none;
+                                    }
+                                }
+    
+                                td{
+                                    color: $text-color;
+                                    font-size: 12px;
+                                    line-height: 17px;
+                                    font-weight: 400;
+                                    border-left: none;
+                                    border-right: none;
+                                    vertical-align: middle;
+                                    padding: 8px 8px;
+
+                                    @include transition(padding 0.2s ease);
+                                        
+                                    &:first-child {
+                                        padding: 8px 8px 8px 16px;
+                                    }
+        
+                                    &:last-child {
+                                        padding: 8px 16px 8px 8px;
+
+                                        .app-c-grid-actions{
+
+                                            @include justify-content(flex-end);
+                                            
+                                            .app-l-grid-action-controls {
+                                                @include justify-content(flex-end);
+                                            }
+                                        }
+                                    }
+    
+                                    @include transition(background ease 0.2s);
+    
+                                    + td {
+                                        border-left: solid 1px $grid-row-vertical-border;
+                                    }
+    
+                                    &.dx-command-edit-with-icons{
+                                        vertical-align: middle;
+    
+                                        .dx-link{
+                                            font-family: $font-port-client;
+                                            color: #4f3f43;
+    
+                                            margin: 0;
+                                            padding: 0;
+                                            font-size: 14px;
+                                            line-height: normal;
+                                            padding: 4px;
+                                            outline: none;
+                                            width: 25px;
+                                            height: 25px;
+                                            background-color: transparent;
+                                            border: solid 1px transparent;
+                                    
+                                            @include inline-flex();
+                                            @include align-items(center);
+                                            @include justify-content(center);
+                                            @include border-radius(4px);
+                                            @include transition(border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out);
+    
+                                            &.dx-link-edit {
+                                                &:before{
+                                                    content: "\e929";
+                                                }
+                                            }
+                                            &.dx-icon-trash {
+                                                &:before{
+                                                    content: "\e91d";
+                                                }
+                                            }
+    
+                                            &:hover{
+                                                color: $app-brand-primary;
+                                            }
+    
+                                            &.dx-link-save {
+                                                &:before{
+                                                    content: "\e90f";
+                                                }
+                                            }
+                                            &.dx-link-cancel {
+                                                &:before{
+                                                    content: "\e918";
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .app-c-grid-actions{
+                                        position: relative;
+                                        width: 100%;
+    
+                                        @include flexbox();
+                                        @include align-items(center);
+                                        @include justify-content(center);
+    
+                                        .app-l-grid-action-controls {
+                                            position: absolute;
+                                            left: 0;
+                                            width: 100%;
+                    
+                                            @include flexbox();
+                                            @include align-items(center);
+                                            @include justify-content(center);
+                                            
+                                            &.left-align {
+                                                @include justify-content(flex-start);
+                                            }
+                                            &.right-align {
+                                                @include justify-content(flex-end);
+                                            }
+    
+                                            .app-l-action-text {
+                                                font-size: 12px;
+                                                line-height: 17px;
+                                                color: $text-color;
+    
+                                                + .app-c-btn--icon {
+                                                    margin-left: 8px;
+                                                }
+                                            }
+                    
+                                            .app-c-btn--icon {
+                    
+                                                margin: 0;
+                                                padding: 4px;
+                                                font-size: 12px;
+                                                color: $text-color-light;
+                                                line-height: normal;
+                                                outline: none;
+                                                width: 24px;
+                                                height: 24px;
+                                                background-color: transparent;
+                                                border: solid 1px $generic-border-color;
+                                        
+                                                @include flexbox();
+                                                @include align-items(center);
+                                                @include justify-content(center);
+                                                @include border-radius(4px);
+                                                @include transition(border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out);
+                                        
+                                                + .app-c-btn--icon {
+                                                    margin-left: 12px;
+                                                }
+    
+                                                &:focus {
+                                                    color: $white;                                            
+                                                    border-color: $app-brand-primary;                                            
+                                                    background: $app-brand-primary; 
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .app-c-grid-checkbox {
+                                        position: relative;
+    
+                                        @include flexbox();
+                                        @include align-items(center);
+                                        @include justify-content(flex-start);
+                                    }
+                                    .app-c-grid-select {
+                                        position: relative;
+    
+                                        @include flexbox();
+                                        @include align-items(center);
+                                        @include justify-content(flex-start);
+    
+                                        .form-group {
+                                            margin-bottom: 0;
+                                        }
+    
+    
+                                    }
+                                    .app-l-grid-toggle {
+                                        position: relative;
+    
+                                        @include flexbox();
+                                        @include align-items(center);
+                                        @include justify-content(flex-start);
+    
+                                        .app-c-toggle {
+                                            position: absolute;
+                                            left: 0;
+                                        }
+                                        .app-c-switch {
+                                            position: absolute;
+                                            left: 0;
+                                        }
+                                    }
+                                    .app-l-badge-holder {
+                                        position: relative;
+                                        width: 100%;
+    
+                                        @include flexbox();
+                                        @include align-items(center);
+                                        @include justify-content(center);
+
+                                        .app-l-badge-wrap {
+                                            position: absolute;
+                                            left: 0;
+                                            width: 100%;
+                    
+                                            @include flexbox();
+                                            @include align-items(center);
+                                            @include justify-content(center);
+
+                                            .badge {
+                                                width: 100%;
+                                                min-width: 0;
+                                            }
+                                        }
+                                    }
+    
+                                    &.dx-focused {
+                                        .app-c-grid-actions {
+                                            .app-l-grid-action-controls {
+                                                .app-c-btn--icon {
+                                                    color: $black;                                            
+                                                    border-color:#cfdcf1;
+                                                    background: $white;
+    
+                                                    &:focus {
+                                                        color: $white;                                            
+                                                        border-color: $app-brand-primary;                                            
+                                                        background: $app-brand-primary; 
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.dx-editor-cell {
+                                        .dx-highlight-outline {
+                                            position: relative;
+                                            
+                                            &:before {
+                                                position: absolute;
+                                            }
+                                        }
+
+                                        &.dx-focused {
+                                            // padding-top: 3px;
+                                            // padding-bottom: 3px;
+                                        }
+                                    }
+
+                                    .dx-datagrid-invalid-message {
+                                        .dx-invalid-message {
+                                            .dx-overlay-content {
+                                                padding: 4px 6px;
+                                                background-color: $validation-red;
+                                                color: white;
+                                                font-size: 10px;
+                                                font-weight: 600;
+                                            }
+                                        }
+                                    }
+
+                                    .dx-datagrid-revert-tooltip {
+                                        display: none;
+                                    }
+
+                                    &.dx-cell-focus-disabled {
+                                        .app-c-grid-actions, .app-c-grid-checkbox, .app-c-grid-select, .app-l-grid-toggle {
+                                            cursor: not-allowed;
+                                        }
+                                    }
+                                }
+
+                                + .dx-row{
+                                    td{
+                                        border-top:1px solid $table-border;
+                                    }
+                                }
+    
+                                &:hover {
+                                    td{
+                                        background: $grid-row-hover-bg;
+                                        // background: rgba($text-light-medium, 0.3);
+    
+                                        &.dx-command-edit-with-icons{
+                                            .dx-link{
+                                                color: $black;                                            
+                                                border-color:#cfdcf1;
+                                                background: $white;
+    
+                                                &:hover {
+                                                    color: $white;                                            
+                                                    border-color: $app-brand-primary;                                            
+                                                    background: $app-brand-primary;                                            
+                                                }
+                                            }
+                                        }
+                                        .app-c-grid-actions {
+                                            .app-l-grid-action-controls {
+                                                .app-c-btn--icon {
+                                                    color: $black;                                            
+                                                    border-color:#cfdcf1;
+                                                    background: $white;
+        
+                                                    &:hover {
+                                                        color: $white;                                            
+                                                        border-color: $app-brand-primary;                                            
+                                                        background: $app-brand-primary;                                            
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    + .dx-row{
+                                        td{
+                                            border-top:1px solid $table-border;
+                                        }
+                                    }
+                                    &:nth-last-child(2) {
+                                        td{
+                                            border-bottom: 1px solid $table-border;
+                                        }
+                                    }
+                                }
+
+                                &.dx-selection{
+                                    td{
+                                        background: $grid-row-hover-bg;
+                                        // background: rgba($text-light-medium, 0.3);
+    
+                                        &.dx-command-edit-with-icons{
+                                            .dx-link{
+                                                color: $black;                                            
+                                                border-color:#cfdcf1;
+                                                background: $white;
+    
+                                                &:hover {
+                                                    color: $white;                                            
+                                                    border-color: $app-brand-primary;                                            
+                                                    background: $app-brand-primary;                                            
+                                                }
+                                            }
+                                        }
+                                        .app-c-grid-actions {
+                                            .app-l-grid-action-controls {
+                                                .app-c-btn--icon {
+                                                    color: $black;                                            
+                                                    border-color:#cfdcf1;
+                                                    background: $white;
+        
+                                                    &:hover {
+                                                        color: $white;                                            
+                                                        border-color: $app-brand-primary;                                            
+                                                        background: $app-brand-primary;                                            
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    + .dx-row{
+                                        td{
+                                            border-top:1px solid $table-border;
+                                        }
+                                    }
+                                    &:nth-last-child(2) {
+                                        td{
+                                            border-bottom: 1px solid $table-border;
+                                        }
+                                    }
+                                }
+
+                                &.dx-freespace-row{
+                                    //display: none;
+                                    height: 1px !important;
+                                    
+                                    > td {
+                                        background: $white;
+                                        height: auto !important;
+                                        
+                                        &:empty {
+                                            padding: 0;
+                                        }
+        
+                                        + td {
+                                            border-left: none;
+                                        }
+                                    }
+                                }
+
+                                &.dx-state-hover {
+                                    &:not(.dx-edit-row) {
+                                        &:not(.dx-freespace-row) {
+                                            > td {
+                                                background: $grid-row-hover-bg;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                &.app-l-disabled-row {
+                                    opacity: 0.5;
+                                }
+
+                                &.app-l-red-text-row {
+                                    td {
+                                        color: $validation-red;
+                                    }
+                                }
+
+                                &.dx-data-row {
+                                    .dx-validator {
+                                        &.dx-datagrid-invalid {
+                                            .dx-highlight-outline {
+                                                &:after {
+                                                    border: 1px solid $validation-red;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .dx-cell-modified {
+                                        .dx-highlight-outline {
+                                            &:after {
+                                                border: solid 1px $default-green;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+        
+                    .dx-datagrid-header-panel {
+                        .dx-toolbar {
+                            .dx-toolbar-items-container {
+                                .dx-toolbar-after {
+                                    .dx-toolbar-item {
+                                        .dx-item-content {
+                                            .dx-datagrid-toolbar-button {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+        
+                    .dx-datagrid-focus-overlay{
+                        border: none;
+                        background: $grid-row-hover-bg;
+        
+                        @include border-radius(3px);
+                        @include boxShadow(inset 0px 0px 0px 0px transparent);
+                    }
+        
+                    .app-l-icon-col-header {
+                        line-height: normal;
+                        color: $text-color;
+                        font-size: 11px;
+                        font-weight: 500;
+                    }
+
+                    .dx-texteditor-input {
+                        min-height: 28px;
+                        padding: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+    // Filter column grids
+
+    .app-l-no-pager-grid {
+        min-height: 0;
+        height: 100%;
+        
+        @include flexbox();
+        @include flex-direction(column);
+    }
+
+    &.dx-selection-disabled{
+        .dx-datagrid-rowsview{ 
+            .dx-selection{
+                &.dx-row{
+                    &:not(.dx-row-focused){
+                        > td{
+                            background-color: rgba(247, 249, 251, 0.72);
+                            border-bottom: none ;
+                            border-top: none;
+                        }
+                    }
+                    + .dx-row{
+                        &:not(.dx-row-focused){
+                            > td{
+                                border-top: 1px solid $table-border;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .app-l-grid-header {
+        padding: 8px 16px;
+        background-color: $white;
+
+        @include flexbox();
+        @include align-items(center);
+        @include border-radius(6px 6px 0px 0px);
+
+        @media screen and (max-width: 767px){
+            @include flex-wrap(wrap);
+        }
+
+        .app-l-grid-head-left {
+
+            @include flexbox();
+            @include flex-direction(row);
+            @include flex-wrap(wrap);
+            @include align-items(center);
+
+            @media screen and (max-width: 576px){
+                width: 100%;
+            }
+
+            &:empty {
+                display: none;
+            }
+
+            .app-l-grid-header-text {
+                margin: 0 8px 0 0;
+                padding: 0px 0px;
+                line-height: 23px;
+                max-width: 350px;
+
+                @include truncate();
+
+                @media screen and (max-width: 576px){
+                    max-width: 100%;
+                }
+
+                &:empty {
+                    display: none;
+                }
+
+                &.app-l-grid-small-header {
+                    font-size: 15px;
+                    line-height: 19px;
+                }
+            }
+            
+            .app-l-header-sub-text {
+                padding: 8px 0px;
+                margin-bottom: 0;
+
+                &:empty {
+                    display: none;
+                }
+            }
+        }
+
+        .app-l-grid-head-right {
+            margin-left: auto;
+
+            @include flexbox();
+            @include flex-direction(row);
+            @include flex-wrap(wrap);
+            @include align-items(center);
+
+            @media screen and (max-width: 767px){
+                margin-left: 0;
+                margin-right: auto;
+                width: 100%;
+            }
+
+            &.app-l-btn-group {
+                > .app-c-btn {
+                    + .app-c-btn {
+                        margin-left: 8px;
+                    }
+                    @media screen and (max-width: 767px){
+                        margin-bottom: 8px;
+                        margin-top: 8px;
+                    }
+
+                    &.app-c-btn--secondary {
+                        padding: 5px 24px;
+                    }
+                }
+            }
+
+            .app-l-grid-controllers {
+                min-width: 0;
+                max-width: 100%;
+                overflow-x: auto;
+                margin-top: -4px;
+                padding-top: 4px;
+
+                // @include flex-shrink(0);
+                @include inline-flex();
+                // @include justify-content(flex-end);
+                @include align-items(center);
+
+                .app-c-btn {
+                    @include flex-shrink(0);
+                }
+            }
+        }
+    }
+
+    .app-c-grid--footer{
+        background: $white;
+        border-top: 1px solid transparent;
+        padding: 8px 16px 0px 16px;
+
+        @include flexbox();
+        @include align-items(center);
+        @include border-radius(0px 0px 6px 6px);
+
+        @media screen and (max-width: 767px){
+            display: block;
+        }
+
+        .app-l-grid-footer__left{
+
+            @include flexbox();
+            @include align-items(center);
+            @include flex-grow(1);
+
+            @media screen and (max-width: 991px){
+                @include flex-wrap(wrap);
+            }
+            @media screen and (max-width: 767px){
+                margin-bottom: 8px;
+            }
+            
+            .app-l-grid__footer-text{
+                font-size: $text-md;
+                color: #3B4458;
+                display: block;
+                line-height: normal;
+                font-weight: 400;
+
+                &.app-l-row-text {
+                    cursor: default;
+                }
+                &.app-l-paginator {
+                    margin-left: auto;
+                }
+            }
+            .form-control{
+                width: 64px;
+                margin: 0 8px;
+            }
+        }
+        .app-l-grid-footer__right{
+            margin-left: 8px;
+
+            @include flex-shrink(0);
+        }
+    }
+
+    &.app-l-data-grid {
+        height: 100%;
+        min-height: 0;
+        max-width: 100%;
+        min-width: 0;
+
+        @include flexbox();
+        @include flex-direction(column);
+
+        @media screen and (min-height: 200px) {
+            min-height: 180px;
+        }
+        @media screen and (min-height: 400px) {
+            min-height: 335px;
+        }
+
+        .app-l-grid-holder {       
+            max-width: 100%;
+
+            > .app-l-no-pager-grid {
+                min-height: 0;
+                max-height: 100%;    
+            }
+            >.dx-widget {
+                min-height: 234px;
+                height: 100%;
+    
+                @include flexbox();
+                @include flex-direction(column);
+
+                > .dx-gridbase-container {
+                    min-height:234px;
+                    max-height: 100%;
+                    max-width: 100%;
+                    overflow-x: hidden;
+                }
+            }
+        }
+    }
+
+    &.app-c-grid-selection--multiple{
+        .app-l-grid-holder{
+            .dx-widget{
+                .dx-datagrid-rowsview {
+                    .dx-datagrid-table{
+                        .dx-row{
+                            .dx-select-checkbox{
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.app-l-filtered-col-grid {
+    .app-c-grid {
+        .app-l-grid-holder {
+            > .dx-widget {
+
+                .dx-datagrid-filter-row {
+                    .dx-editor-cell {
+                        .dx-editor-with-menu {
+                            .dx-menu {
+                                display: block !important;
+                                margin-left: 0px;
+                                margin-top: 0px;
+
+                                .dx-menu-horizontal {
+                                    display: block;
+                                    max-width: 30px;
+                                    
+                                    .dx-menu-items-container {
+                                        display: block;
+                                        max-width: 30px;
+
+                                        .dx-menu-item-wrapper {
+                                            pointer-events: all;
+
+                                            .dx-menu-item-has-icon {
+                                                display: block;
+                                                max-width: 30px;
+                                                
+                                                .dx-item-content {
+                                                    &.dx-menu-item-content {
+                                                        padding: 7px 5px 7px 6px;
+                                                        max-width: 30px;
+
+                                                        @include inline-flex();
+                                                        @include align-items(center);
+                                                        @include justify-content(center);
+
+                                                        .dx-icon {
+                                                            margin: auto !important;
+                                                        }
+                                                    }
+                                                    .dx-icon-filter-operation-default {
+                                                        &:before {
+                                                            content: "\e93d" !important;
+                                                            font-family: 'port-client' !important;;
+                                                            font-size: 12px;
+                                                            line-height: normal;
+                                                            color: $text-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .dx-editor-container {
+                                border: none;
+
+                                .dx-filter-range-content {
+                                    background-color: $white;
+                                    border: solid 1px $container-border;
+        
+                                    @include border-radius(3px);
+                                    @include transition(border-color 0.3s ease-in-out);
+                                }
+                            }
+                        }
+                    }
+
+                    .dx-editor-container{
+                        .dx-textbox, .dx-numberbox{
+                            .dx-texteditor-input-container{
+                                &:before {
+                                    display: none !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.app-c-grid__pagination{
+    @include flexbox();
+    @include align-items(center);
+
+    a{
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        font-size: $text-md;
+        color: $text-dark-medium;
+        font-weight: 500;
+        border: 1px solid transparent;
+
+        @include border-radius(3px);
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+        @include transition(color ease 0.2s, background ease 0.2s, border ease 0.2s);
+        @include flex-shrink(0);
+
+        + a{
+            margin-left: 4px;
+        }
+
+        i{
+            font-size: 10px;
+        }
+        &.app-c-grid__navigation{
+            width: 30px;
+            height: 30px;
+            border-color: $grid-pagination-border;
+            font-size: 14px;
+            color: $text-dark-medium;
+
+            i{
+                font-size: 11px;
+            }
+        }
+        &.app-c-btn--icon{
+            + .app-c-btn--icon{
+                margin-left: 4px !important;
+            }
+        }
+        &:hover{
+            border-color: $grid-pagination-border;
+        }
+        &.active{
+            border-color: $grid-pagination-border-active;
+            background: $grid-pagination-background-active;
+            color: $white;
+        }
+        &.disabled{
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    }
+    .app-l-pagination__dots{
+        font-size: 20px;
+        line-height: 7px;
+        vertical-align: top;
+        display: inline-block;
+        position: relative;
+        top: -6px;
+        margin: 0 4px;
+    }
+}
+
+.app-l-grid-header-text {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: $text-color;
+    margin: 0;
+    
+    &.app-l-grid-small-header {
+        font-size: 15px;
+        line-height: 19px;
+    }
+}
+
+.app-l-header-sub-text {
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    line-height: 18px !important;
+    color: $text-dark-normal !important;
+    padding: 0;
+}
+
+.app-c-grid {
+    .dx-widget {
+        .dx-datagrid {
+            .dx-scrollable {
+                @media screen and(max-width : 767px){
+                    max-height: 420px;
+                }
+            }
+        }
+    }
+
+    &.app-l-sticky-column-grid {
+        .dx-widget {
+            .dx-datagrid {
+                .dx-datagrid-headers {
+                    .dx-datagrid-content-fixed {
+                        .dx-datagrid-table {
+                            .dx-row {
+                                border-bottom: 1px solid $table-border;
+
+                                td {
+                                    &.dx-datagrid-drag-action {
+                                        border-bottom: 1px solid $table-border;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .dx-datagrid-rowsview {
+                    &.dx-fixed-columns {
+                        .dx-scrollable-wrapper {
+                            .dx-datagrid-content {
+                                .dx-datagrid-table {
+                                    tbody {
+                                        .dx-row {
+                                            &:nth-last-child(2) {
+                                                border-bottom: 1px solid $table-border;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .dx-datagrid-content-fixed {
+                            .dx-datagrid-table {
+                                tbody {
+                                    .dx-row {
+                                        td {
+                                            &:first-child {
+                                                background: $grid-row-hover-bg;
+                                                font-weight: 500;
+                                                font-size: 11px;
+                                                line-height: 14px;
+                                            }
+                                        }
+
+                                        &:nth-last-child(2) {
+                                            border-bottom: 1px solid $table-border;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.app-l-grid-control-wrap{
+    position: relative;
+
+    .app-c-btn--icon {
+        outline: none;
+        position: relative;
+
+        .applied-state {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            bottom: auto;
+            left: auto;
+            width: 10px;
+            height: 10px;
+            border: solid 1px $white;
+            background-color: $form-error;
+
+            @include border-radius(50%);
+        }
+    }
+
+    &.open {
+        .app-c-btn--icon {
+            outline: none !important;
+            border-color: $app-brand-primary-dark !important;
+            color: $white !important;
+            background: $app-brand-primary-dark !important;
+        }
+    }
+}
+
+.app-l-grid-options-dropdown {
+    padding: 4px 0px;
+    background-color: $white;
+    border-color: $generic-dropdown-border;
+
+    @include flexbox();
+    @include flex-direction(column);
+    @include border-radius(6px);
+    @include boxShadow(0px 3px 6px #E3E3E3);
+
+    &.right-aligned {
+        right: -30px !important;
+    }
+
+    > li {
+        padding: 8px 16px;
+
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(flex-start);
+        @include transition(background-color 0.3s ease-in-out);
+
+        &:hover {
+            background-color: $select-dropdown-item-bg;
+
+            .app-l-dropdown-icon {
+                > i {
+                    color: $select-dropdown-item-text;
+                }
+            }
+            .app-l-grid-dropdown-text {
+                color: $select-dropdown-item-text;
+            }
+        }
+
+        &.clickable-option {
+            cursor: pointer;
+        }
+
+        .app-l-dropdown-icon {
+            margin: 0 8 0 0;
+
+            @include flex-shrink(0);
+            @include transition(color 0.3s ease);
+            
+            > i {
+                color: $text-color;
+                line-height: normal;
+
+                @include transition(color 0.3s ease);
+            }
+
+            + .app-l-grid-dropdown-text {
+                margin-left: 8px;
+            }
+        }
+
+        .app-l-grid-dropdown-text {
+            color: $text-color;
+            line-height: 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 0;
+
+            @include transition(color 0.3s ease);
+        }
+
+        &.app-l-accordion {
+            padding: 0;
+            
+            .panel-group {
+            
+                .panel {
+            
+                    .card {
+                
+                        .panel-collapse {
+                            &.show {
+                                .card-body {
+                                    padding: 0;
+                                    max-height: 200px;
+                                    overflow-x: hidden;
+                                    overflow-y: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .app-l-dropdown-option {
+            padding: 8px 24px 8px 16px;
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            outline: none;
+            
+            @include flexbox();
+            @include align-items(center);
+            @include justify-content(flex-start);   
+            
+            &:focus {
+                background-color: #fafafa;
+            }
+
+            &:hover {
+                background-color: $select-dropdown-item-bg;
+    
+                .app-l-dropdown-icon {
+                    > i {
+                        color: $select-dropdown-item-text;
+                    }
+                }
+            }
+        }
+        
+        .app-l-grid-suboptions {
+
+            width: 100%;
+            background-color: #fafafa;
+            
+            @include flexbox();
+            @include flex-direction(column);
+            
+            .app-l-grid-suboptions-text {
+
+                padding: 8px 16px 8px 40px;
+                background-color: transparent;
+                width: 100%;
+                color: $text-color;
+                line-height: 16px;
+                text-align: left;
+                font-size: 12px;
+                font-weight: 400;
+                cursor: pointer;
+                position: relative;
+
+                &:hover {
+                    background-color: $select-dropdown-item-bg;
+                    color: $select-dropdown-item-text;
+                }
+                &.selected {
+                    .app-l-dropdown-icon {
+                        position: absolute;
+                        left: 17px;
+                        top: auto;
+                        right: auto;
+                        bottom: auto;
+                    }
+                }
+            }
+        }
+
+        .app-l-side-menu-link {
+            text-decoration: none;
+            width: 100%;
+            display: block;
+            
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.dx-datagrid-nodata {
+    color: $text-dark-normal;
+    font-size: 15px;
+}
+
+.app-l-footer-less-grid {
+    .app-c-grid {
+        .app-l-grid-header {
+            .app-l-grid-head-left {
+                display: none !important;
+            }
+        }
+        ops-grid-paginate {
+            .app-c-grid--footer{
+                .app-l-grid-footer__left {
+                    display: none !important;
+                }
+                .app-l-grid-footer__right {
+                    margin-left: auto !important;
+                }
+            }
+        }
+    }
+}
+
+.dx-context-menu {
+    &.dx-datagrid {
+        .dx-submenu {
+            .dx-menu-items-container {
+                .dx-menu-item-wrapper {
+                    .dx-menu-item {
+
+                        + .dx-menu-item {
+                            border-top: solid 1px $select-dropdown-item-border;
+                        }
+
+                        .dx-menu-item-content {
+                            padding: 4px 12px;
+                            font-size: 12px;
+                            line-height: 18px;
+                            max-width: 100%;
+                            white-space: normal;
+
+                            @include transition(color 0.3 ease, background-color 0.3 ease);
+
+                            .dx-icon {
+    
+                            }
+                            .dx-menu-item-text {
+                                font-family: $body-font;
+                                font-size: $text-md;
+                                color: $text-color;
+                            }
+                        }
+
+                        &.dx-menu-item-selected {
+                            background-color: $select-dropdown-item-select-bg;
+ 
+                            .dx-menu-item-content {
+                                .dx-icon {
+                                    color: $white;
+                                }
+                                .dx-menu-item-text {
+                                    color: $white;
+                                }
+                            }
+                            
+                            &.dx-state-hover, &.dx-state-active {
+                                
+                                .dx-menu-item-content {
+                                    .dx-icon {
+                                        color: $white !important;
+                                    }
+                                    .dx-menu-item-text {
+                                        color: $white !important;
+                                    }
+                                }
+                                background-color: $select-dropdown-item-select-bg !important;
+                            }
+                        }
+
+                        &.dx-state-hover {
+                            background-color: $select-dropdown-item-bg;
+ 
+                            .dx-menu-item-content {
+                                .dx-icon {
+                                    color: $select-dropdown-item-text;
+                                }
+                                .dx-menu-item-text {
+                                    color: $select-dropdown-item-text;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

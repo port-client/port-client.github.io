@@ -1,0 +1,35 @@
+@import "../core/mixins/flexbox";
+@import "../theme/theme";
+
+.app-c-stepper{
+    margin-bottom: 16px;
+
+    @include flexbox();
+    @include align-items(flex-end);
+
+    .form-group{
+        margin: 0 2px;
+        width: 100%;
+
+        .app-c-form--label{
+            @media screen and (max-width: 600px){
+                margin-left: -61px;
+                margin-right: -61px;
+            }
+        }
+    }
+    .form-control{
+        width: 100%;
+        border-color: $form-control-disable-border;
+        background: $form-control-disable-background;
+    }
+    .app-c-btn--icon{
+        font-size: 10px;
+
+        @include flex-shrink(0);
+
+        + .app-c-btn--icon{
+            margin-left: 2px;
+        }
+    }
+}

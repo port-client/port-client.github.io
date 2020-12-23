@@ -1,0 +1,851 @@
+@import "../variables/variables";
+@import "../core/mixins/flexbox";
+@import "../core/mixins/border-radius";
+@import "../core/mixins/transitions";
+@import "../core/mixins/truncate";
+
+
+.app-l-wrap{
+    height: 100vh;
+    overflow: auto;
+    padding-left: 70px;
+
+    @media screen and (max-width: 767px){
+        padding-left: 58px;
+        margin-bottom: 39px;
+        height: calc(100vh - 39px);
+    }
+}
+
+.app-l-base {
+    background-color: $app-base-bg;
+    // background-color: lighten(desaturate($app-brand-primary, 72.31), 70.98);
+    padding: 0px;
+    // padding: 0 16px;
+
+    &.app-l-full-height {
+        height: calc(100%);
+
+        @media screen and (max-width: 767px) {
+            height: auto;
+            min-height: 100%;
+            padding-bottom: 4px;
+        }
+    }
+}
+
+.app-l-vertical-content-page {
+    width: 100%;
+    height: 100%;
+    min-height: 0px;
+
+    @include flexbox();
+    @include flex-direction(column);
+}
+
+.app-l-screen-header {
+    width: 100%;
+    min-height: 0px;
+    padding: 15px 16px 12px 16px;
+
+    @include flexbox();
+    @include flex-direction(row);
+    @include flex-grow(0);
+    @include flex-shrink(0);
+
+    @media screen and (max-width: 767px) {
+        padding: 8px 16px 6px 16px;
+    }
+
+    &.app-l-screen-header--white{
+        background: $white;
+    }
+    
+    .app-l-screen-head-controls {
+        margin-left: auto;
+    }
+}
+
+.app-l-breadcrumb-holder {
+    max-width: 100%;
+}
+
+.app-l-screen-head-controls {
+    max-width: 100%;
+
+    @include flexbox();
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(flex-end);
+    @include align-items(center);
+
+    .app-l-round-icon-btn {
+
+        background: $white;
+        border: solid 1px $app-brand-secondary;
+        width: 24px;
+        height: 24px;
+        margin: 4px 0px 4px 8px;
+        outline: none;
+
+        @include inline-flex();
+        @include align-items(center);
+        @include justify-content(center);
+        @include flex-shrink();
+        @include border-radius(50%);
+
+        > i {
+            font-size: 12px;
+            color: $app-brand-secondary;
+            margin: auto;
+
+            @include transition(color 0.3s ease-in-out);
+        }
+
+        &:hover {
+            background-color: $app-brand-secondary;
+
+            i {
+                color: $white;
+            }
+        }
+    }
+}
+
+.app-l-screen-holder {
+    max-width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    @include flexbox();
+    @include flex-direction(column);
+}
+
+.app-l-screen-contents {
+    max-width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: auto;
+    padding: 0 16px;
+
+    @include flexbox();
+    @include flex-direction(column);
+}
+
+.app-l-screen-contents-draggable {
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+    overflow: auto;
+    padding: 0 16px;
+
+    display: block;
+}
+
+.app-l-common-layout{
+    background: $white;
+    height: 100%;
+
+    @include border-radius(6px);
+    @include flexbox();
+    @include flex-direction(column);
+
+    .app-l-common-layout__body{
+        padding: 16px 24px;
+        overflow: auto;
+
+        @media screen and (max-width: 767px){
+            padding: 12px 15px;
+        }
+    }
+    .app-l-common-layout__footer{
+        border-top: $generic-border-color 1px solid;
+        padding: 12px 24px;
+        margin-top: auto;
+
+        @include flexbox();
+        @include flex-shrink(0);
+        @include justify-content(flex-end);
+    }
+}
+
+.app-l-heading--h3{
+    color: $text-color;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0 0 15px;
+    padding: 0;
+
+    @media screen and (max-width: 767px){
+        font-size: 16px;
+    }
+}
+
+.app-l-heading--h4{
+    color: $text-color;
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0 0 15px;
+    padding: 0;
+
+    @media screen and (max-width: 767px){
+        font-size: 13px;
+    }
+}
+
+.flex-align-justify-center {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+}
+
+.app-l-view-check{
+    @include flexbox();
+    @include align-items(center);
+
+    .app-l-view__icon{
+        width: 18px;
+		height: 18px;
+		border: 1px solid $app-checkbox-border;
+		position: relative;
+		background: $app-checkbox-bg;
+        padding-top: 1px;
+        position: relative;
+        z-index: 0;
+        
+        @include transition(background ease 0.2s, border ease 0.2s, box-shadow ease 0.2s);
+		@include flexbox();
+		@include align-items(center);
+		@include justify-content(center);
+		@include flex-shrink(0);
+		@include border-radius(2px);
+        @include align-self(flex-start);
+        
+        > input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: auto;
+            bottom: auto;
+            margin: 0;
+            opacity: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .app-l-view__label {
+        padding-left: 6px;
+        cursor: pointer;
+
+        &.app-l-selected-label {
+            .app-c-checkbox-label {
+                color: $active-checkbox-label;
+                text-shadow: 0px 1px rgba(0, 0, 0, 0.5);
+            }
+        }
+        
+        span{
+            padding-top: 2px;
+            color: $text-dark-extra;
+            font-size: 13px;
+            line-height: 14px;
+            font-weight: 400;
+        }
+    }
+    
+    &.app-l-view-check--checked{
+        .app-l-view__icon{
+            background: $app-brand-primary;
+            border-color: $app-brand-primary-dark;
+            
+            &:before{
+                content: "\e90f";
+                font-family: $font-port-client;
+                font-size: 11px;
+                color: $white;
+                display: block; 
+            }
+        }
+    }
+    &.app-l-view-check--indeterminate{
+        .app-l-view__icon{
+            &:before{
+                content: '';
+				width: 8px;
+				height: 8px;
+				background: $app-brand-primary;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				opacity: 1;
+
+				@include border-radius(2px);
+            }
+        }
+    }
+}
+
+.app-l-progress{
+    background: $white;
+    height: 100%;
+
+    @include border-radius(4px);
+    @include flexbox();
+    @include flex-direction(column);
+
+    .app-l-progress-head{
+        padding: 16px 40px;
+        border-bottom: $generic-border-color 1px solid;
+
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+
+        .app-l-progress__h-block{
+            width: 100%;
+            position: relative;
+            max-width: 350px;
+
+            @include flexbox();
+            @include flex-direction(column);
+            @include align-items(flex-end);
+            
+            &:first-child{
+                width: 20px;
+
+                .app-l-ph__path{
+                    display: none;
+                }
+            }
+            .app-l-ph__path{
+                position: absolute;
+                top: 15px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: $progress-bar-bg-border;
+                // background: lighten(desaturate($app-brand-primary, 61.41), 65.49);
+                overflow: hidden;
+
+                &:before{
+                    content: '';
+                    width: 0%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background: $app-brand-primary;
+
+                    @include transition(width ease 0.2s);
+                }
+            }
+            .app-l-ph__box{
+                width: 30px;
+                height: 30px;
+                border: 1px solid $progress-bar-bg-border;
+                font-size: 16px;
+                color: $text-dark-medium;
+                cursor: pointer;
+                background: $white;
+                position: relative;
+                z-index: 1;
+
+                @include border-radius(3px);
+                @include flexbox();
+                @include align-items(center);
+                @include justify-content(center);
+                @include transition(border ease 0.2s, background ease 0.2s, color ease 0.2s);
+
+                i{
+                    display: block;
+                    line-height: normal;
+                }
+            }
+            .app-l-ph__label{
+                font-weight: 500;
+                font-size: 14px;
+                line-height: normal;
+                color: $text-dark-medium;
+                width: 140px;
+                margin-right: -53px;
+                text-align: center;
+                margin-top: 2px;
+
+                @include transition(color ease 0.2s);
+
+                @media screen and (max-width: 480px){
+                    display: none;
+                }
+            }
+
+            &.select{
+                .app-l-ph__box{
+                    color: $white;
+                    background: $app-brand-primary;
+                    border-color: $app-brand-primary;
+                }
+                .app-l-ph__path{
+                    &:before{
+                        width: 100%;
+                    }
+                }
+                .app-l-ph__label{
+                    color: $app-brand-primary;
+                }
+            }
+        }
+    }
+}
+.app-l-progress-body{
+    padding: 16px;
+    max-height: 100%;
+    min-height: 0;
+    overflow: auto;
+
+    .app-l-progress__block{
+        display: none;
+
+        &.active{
+            display: block;
+        }
+    }
+}
+.app-l-progress__general{
+    max-width: 1300px;
+
+    @include flexbox();
+
+    @media screen and (max-width : 991px){
+        display: block;
+    }
+
+    .app-l-progress__left{
+        width: 100%;
+        padding-right: 15px;
+
+        @media screen and (max-width : 991px){
+            padding-right: 0;
+        }
+
+        .app-l-gn__tp{
+            @include flexbox();
+            @include flex-wrap(wrap);
+
+            .form-group{
+                margin-right: 16px;
+
+                @media screen and (max-width : 480px){
+                    margin-right: 0;
+                }
+            }
+        }
+        .app-l-gn__bt{
+            padding-top: 16px;
+            max-width: 760px;
+            border-top: $logo-wrap-border 1px solid;
+            // border-top: lighten(desaturate($app-brand-primary, 61.41), 65.49) 1px solid;
+
+            @include flexbox();
+            @include flex-wrap(wrap);
+
+            .form-group{
+                margin-right: 16px;
+
+                @media screen and (max-width : 480px){
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    .app-l-progress__right{
+        width: 370px;
+        padding-left: 32px;
+        border-left: $logo-wrap-border 1px solid;
+        // border-left: lighten(desaturate($app-brand-primary, 61.41), 65.49) 1px solid;
+
+        @include flex-shrink(0);
+
+        @media screen and (max-width : 991px){
+            border-top: $logo-wrap-border 1px solid;
+            // border-top: lighten(desaturate($app-brand-primary, 61.41), 65.49) 1px solid;
+            border-left: 0;
+            padding-top: 32px;
+            padding-left: 0;
+            max-width: 100%;
+        }
+    }
+}
+
+.app-l-color__theme{
+    @include flexbox();
+    @include align-items(center);
+
+    .app-l-color__select{
+        margin-right: 12px;
+        margin-bottom: 4px;
+
+        @include flex-shrink(0);
+        @include align-self(flex-start);
+    }
+    .app-l-color__pre{
+        width: 100%;
+
+        @include flexbox();
+        @include align-items(center);
+        @include flex-wrap(wrap);
+
+        .app-l-color__sample{
+
+            cursor: pointer;
+            margin-right: 12px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+    }
+}
+.app-l-company__logo{
+    margin-bottom: 16px;
+
+    .app-c-file-upload{
+        margin-bottom: 10px;
+    }
+    .app-l-company-logo__holder{
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid $logo-wrap-border;
+        // border: 1px solid lighten(desaturate($app-brand-primary, 61.41), 65.49);
+    }
+}
+.app-l-short-logo{
+    margin-bottom: 16px;
+
+    .app-c-file-upload{
+        margin-bottom: 10px;
+    }
+    .app-l-short-logo__holder{
+        width: 60px;
+        height: 60px;
+        padding: 10px;
+        border: 1px solid logo-wrap-border;
+
+        @include border-radius(50%);
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+
+        img{
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+}
+
+.app-l-local__form-block{
+    .app-l-local__form{
+        @include flexbox();
+        @include flex-wrap(wrap);
+
+        .form-group{
+            margin-right: 16px;
+
+            @media screen and (max-width : 480px){
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.app-l-progress-email{
+    max-width: 500px;
+
+    .app-l-progress-email__form{
+        @include flexbox();
+        @include flex-wrap(wrap);
+
+        .form-group{
+            margin-right: 16px;
+
+            @media screen and (max-width : 480px){
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.app-l-pr__check{
+    .app-c-checkbox{
+        margin-top: 20px;
+
+        @media screen and (max-width : 480px){
+            margin-top: 0;
+        }
+    }
+}
+
+.app-l-no-data-area {
+    @include inline-flex();
+    @include justify-content(center);
+    @include align-items(center);
+    @include flex-direction(column);
+
+    min-height: 150px;
+    height: 100%;
+    width: 100%;
+
+    &.white-bg {
+        background-color: #fafafa;
+    }
+
+    .app-l-no-data-img-wrap {
+        
+        max-width: 100%;
+        min-width: 0;
+        position: relative;
+
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+
+        img {
+            max-width: 150px;
+            width: 150px;
+            max-height: 150px;
+            height: 150px;
+            min-height: 0;
+
+            @media screen and (max-width: 767px) {
+                max-width: 100px;
+                width: 100px;
+                max-height: 100px;
+                height: 100px;
+            }
+        }
+    }
+
+    .app-l-no-data-text {
+        max-width: 100%;
+        min-width: 0;
+        padding: 16px;
+
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        @include flex-direction(column);
+
+        &.no-pad-top {
+            padding-top: 0;
+        }
+
+        span {
+            font-size: 14px;
+            font-weight: 400;
+            color: #bdbdbd;
+            text-align: center;
+
+            @media screen and (max-width: 767px) {
+                font-size: 18px;
+            }
+        }
+    }
+
+    &.app-l-dashboard-charts {
+        .app-l-no-data-text {
+   
+            span {
+                font-size: 20px;
+                font-weight: 400;
+    
+                @media screen and (max-width: 767px) {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+.app-l-card-stats {
+	color: #3B4458;
+	font-size: 13px;
+	line-height: 14px;
+	font-weight: 400;
+}
+
+.badge {
+    max-width: 100%;
+    white-space: normal;
+}
+
+.app-l-user-info-holder {
+    width: 100%;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+    .app-l-heading--h4 {
+        margin: 0 !important;
+    }
+
+    p {
+        font-size: 12px;
+        line-height: 18px;
+        color: $text-color;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    + .app-l-onboard-form-group {
+        margin-top: 24px;
+    }
+}
+
+// Remove auto height feature for grids with with draggable rows.
+
+.auto-height-grid {
+
+    ops-grid {
+
+        .app-c-grid {
+
+            .app-l-grid-holder {
+        
+                position: relative;
+                z-index: 0;
+
+                // &:after {
+                //     content: '';
+                //     width: calc(100% - 32px);
+                //     height: 100%;
+                //     position: absolute;
+                //     z-index: 1;
+                //     top: 0;
+                //     right: auto;
+                //     bottom: 0;
+                //     left: auto;
+                //     border: solid 1px $table-border;
+
+                //     @include border-radius(4px);
+                // }
+
+                > .dx-widget {
+            
+                    position: relative;
+                    z-index: 2;
+                    // display: block !important;
+                    margin-bottom: 1px;
+
+                    .dx-gridbase-container {
+                        .dx-datagrid-rowsview{
+                            // border-bottom: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+app-work-order-entry {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 0px;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+    app-edit-wo-entry {
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        min-height: 0px;
+
+        @include flexbox();
+        @include flex-direction(column);
+    }
+    
+    app-step {
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        max-height: 100%;
+        min-height: 0px;
+
+        display: block;
+
+        ops-grid {
+            width: 100%;
+            min-width: 0;
+            height: 100%;
+            min-height: 0px;
+        
+            display: block !important;
+        }
+    }
+}
+
+app-configuration {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 0px;
+
+    @include flexbox();
+    @include flex-direction(column);
+    
+    app-work-order-template {
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        min-height: 0px;
+    
+        @include flexbox();
+        @include flex-direction(column);
+        
+        app-edit-wo-template {
+            width: 100%;
+            min-width: 0;
+            height: 100%;
+            min-height: 0px;
+        
+            @include flexbox();
+            @include flex-direction(column);        
+        }
+        
+        app-step {
+            width: 100%;
+            min-width: 0;
+            height: 100%;
+            min-height: 0px;
+    
+            @include flexbox();
+            @include flex-direction(column);
+            
+            ops-grid {
+                width: 100%;
+                min-width: 0;
+                height: 100%;
+                min-height: 0px;
+            
+                display: block !important;
+            }
+        }
+    }
+}
+
+
+
+
+app-private {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 0px;
+
+    @include flexbox();
+    @include flex-direction(column);
+}

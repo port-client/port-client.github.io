@@ -1,0 +1,816 @@
+.app-l-onboard-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    min-width: 0;
+    margin: -16px 0;
+    height: calc(100% + 32px);
+    min-height: 0;
+    z-index: 100;
+    
+    @include flexbox();
+    @include flex-grow(1);
+
+    .app-l-onboard-holder {
+        width: 100%;
+        height: calc(100% - 32px);
+        padding: 16px 32px;
+        margin: 16px 0px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        z-index: 101;
+
+        @include flexbox();
+        @include flex-grow(1);
+        @include align-items(center);
+        @include flex-direction(column);
+
+        @media screen and (max-width: 430px) {
+            padding: 16px;
+        }
+
+        .app-l-onboard-form-wrap {
+            min-height: 0;
+            height: auto;
+            margin-top: 3%;
+            margin-left: auto;
+            margin-right: auto;
+            
+            @include flexbox();
+            @include flex-grow(0);
+            @include flex-direction(column);
+            @include align-items(center);
+            @include justify-content(center);
+            @include flex-shrink(0);
+
+            @media screen and (max-width: 576px) {
+                width: 100%;
+            }
+
+            .app-l-logo-holder {
+                max-width: 150px;
+                max-height: 150px;
+                margin: auto 24px 24px 24px;
+                
+                @include flex-shrink(0);
+                @include flexbox();
+                @include flex-grow(0);
+                @include align-items(center);
+                @include justify-content(center);
+                
+                @media screen and (max-width: 767px) {
+                    margin: 16px;
+                }
+
+                > img {
+                    width: 150px;
+                    max-width: 150px;
+                    height: 150px;
+                    max-height: 150px;
+                    margin: auto;
+                }
+
+                > h4 {
+                    color: $app-brand-primary;
+                    font-size: 28px;
+                    line-height: 30px;
+                    text-align: center;
+                }
+            }
+
+            .app-l-onboard-form {
+                width: 400px;
+                min-height: 400px;
+                padding: 24px 40px;
+                border: solid 1px $white;
+                background-color: $white;
+                
+                @include flexbox();
+                @include flex-grow(0);
+                @include flex-shrink(0);
+                @include flex-direction(column);
+                @include border-radius(6px);
+                @include boxShadow(0px 0px 11px rgba(157, 163, 181, 0.4));
+                
+                @media screen and (max-width: 767px) {
+                    padding: 24px;
+                }
+                @media screen and (max-width: 576px) {
+                    width: 100%;
+                    padding: 24px 24px;
+                }
+
+                &.app-l-height-auto {
+                    min-height: auto;
+                }
+
+                .app-l-onboard-form-header {
+                    color: $onboard-form-header;
+                    font-weight: 500;
+                    font-size: 15px;
+                    line-height: 22px;
+                    margin: 0;
+                    text-align: center;
+
+                    + .app-l-onboard-form-group {
+                        margin-top: 30px;
+                    }
+                }
+
+                .app-l-onboard-form-group {
+                    width: 100%;
+
+                    + .app-l-onboard-form-group {
+                        margin-top: 8px;
+                    }
+                    
+                    + .app-l-onboard-form-controls {
+                        margin-top: 16px;
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    .app-l-onboard-left {
+
+        width: 100%;
+        margin: -16px 0;
+        height: calc(100% + 32px);
+        max-height: calc(100% + 32px);
+        min-height: 0;
+        background-color: $onboard-screen-bg;
+        background-size: cover;
+        position: relative;
+        
+        @include flexbox();
+        @include flex-grow(1);
+        @include flex-direction(column);
+        @include align-items(flex-start);
+        @include justify-content(center);
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: auto;
+            width: 100%;
+            height: 70%;
+            background: url("src/assets/images/bg-left.png") no-repeat left center fixed;
+            background-size: cover;
+            background-position: -37px 0px;
+        }
+
+        @media screen and (max-width: 767px) {
+            display: none;
+        }
+
+        .app-l-provider-content {
+            width: 100%;
+            margin-top: auto;
+            height: calc(50% + 31px);
+
+            @include flexbox();
+            @include flex-direction(column);
+            @include align-items(flex-start);
+            @include justify-content(center);
+        }
+
+        .app-l-onboard-type-wrap {
+            max-width: 100%;
+            margin-left: 80px;
+            margin-bottom: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+            
+            @include flexbox();
+            @include align-items(center);
+            
+            @media screen and (max-width: 991px) {
+                margin-left: 48px;
+            }
+
+            .app-l-onboard-img-wrap {
+                max-width: 114px;
+                max-height: 62px;
+
+                @include flexbox();
+                @include flex-shrink(0);
+                @include align-items(center);
+                @include justify-content(center);
+
+                > img {
+                    max-width: 114px;
+                    width: 114px;
+                    max-height: 62px;
+                    height: 62px;
+                }
+
+                + .app-l-onboard-type-img {
+                    margin-left: 12px;
+                    padding-left: 12px;
+                    border-left: solid 1px $login-logo-seperator;
+                }
+            }
+
+            .app-l-onboard-type-img {
+                max-width: 218px;
+                max-height: 56px;
+                height: 45px;
+
+                @include flexbox();
+                @include flex-shrink(0);
+                @include align-items(center);
+                @include justify-content(center);
+
+                > img {
+                    max-width: 206px;
+                    width: 206px;
+                    max-height: 56px;
+                    height: 56px;
+                }
+            }
+        }
+
+        .app-l-onboard-logo-holder {
+            margin-left: 80px;
+            margin-bottom: 80px;
+            margin-top: auto;
+            margin-right: auto;
+            
+            @include align-items(flex-start);
+            @include justify-content(center);
+            
+            @media screen and (max-width: 991px) {
+                margin-bottom: 48px;
+                margin-left: 48px;
+            }
+
+            .app-l-onboard-app-logo {
+       
+                + .app-l-onboard-brand-text {
+                    margin-top: 12px;
+                }
+            }
+
+            .app-l-onboard-brand-text {
+                margin: 0;
+            }
+        }
+    }
+
+    .app-l-onboard-right {
+
+        width: 637px;
+        max-width: 637px;
+        height: 100%;
+        min-height: 0;
+        background-color: $login-form-bg;
+        margin: -16px 0;
+        max-height: calc(100% + 32px);
+        height: calc(100% + 32px);
+
+        @include flexbox();
+        @include flex-direction(column);
+        @include align-items(center);
+        @include flex-shrink(0);
+
+        @media screen and (max-width: 1200px) {
+            width: 50%;
+            max-width: 50%;
+        }
+        @media screen and (max-width: 767px) {
+            width: 100%;
+            max-width: 100%;
+            background-color: $onboard-screen-bg;
+            background: url("src/assets/images/bg-left.png") no-repeat center bottom fixed $onboard-screen-bg;
+            background-size: cover;
+        }
+
+        .app-l-onboard-form-holder {
+            width: 100%;
+            padding: 16px;
+            position: relative;
+            min-height: 0;
+            margin: auto;
+            overflow-y: auto;
+            max-height: 100%;
+
+            @include flexbox();
+            @include flex-direction(column);
+            @include align-items(center);
+
+            &:after {
+                content: '';
+                height: 16px;
+                width: 100%;
+                background-color: transparent;
+                display: block;
+    
+                @include flex-shrink(0);
+            }
+            &:before {
+                content: '';
+                height: 16px;
+                width: 100%;
+                background-color: transparent;
+                display: block;
+    
+                @include flex-shrink(0);
+            }
+
+            .app-l-onboard-content-type-wrap {
+                max-width: 100%;
+                margin-left: auto;
+                margin-top: auto;
+                margin-bottom: 0;
+                margin-right: auto;
+                display: none;
+                padding-top: 16px;
+                
+                @include flex-shrink(0);
+                
+                @media screen and (max-width: 767px) {
+                    padding-top: 0px;
+
+                    @include flexbox();
+                    @include align-items(center);
+                    @include justify-content(flex-start);
+                }
+
+                .app-l-onboard-content-img-wrap {
+                    max-width: 114px;
+                    max-height: 62px;
+
+                    @include flexbox();
+                    @include flex-shrink(0);
+                    @include align-items(center);
+                    @include justify-content(center);
+
+                    @media screen and (max-width: 767px) {
+                        max-width: 54px;
+                        max-height: 32px;
+                    }
+
+                    > img {
+                        max-width: 114px;
+                        width: 114px;
+                        max-height: 62px;
+                        height: 62px;
+
+                        @media screen and (max-width: 767px) {
+                            max-width: 54px;
+                            width: 54px;
+                            max-height: 32px;
+                            height: 32px;
+                        }
+                    }
+
+                    + .app-l-onboard-content-type-img {
+                        margin-left: 12px;
+                        padding-left: 12px;
+                        border-left: solid 1px $login-logo-seperator;
+                    }
+                }
+
+                .app-l-onboard-content-type-img {
+                    max-width: 130px;
+                    max-height: 45px;
+                    height: 45px;
+
+                    @include flexbox();
+                    @include flex-shrink(0);
+                    @include align-items(center);
+                    @include justify-content(center);
+
+                    > img {
+                        max-width: 116px;
+                        width: 116px;
+                        max-height: 28px;
+                        height: 28px;
+                    }
+
+                    @media screen and (max-width: 767px) {
+                        max-height: 35px;
+                    }
+                }
+
+                + .app-l-onboard-form {
+                    @media screen and (max-width: 767px) {
+                        margin-top: 12px;
+                    }
+                }
+            }
+
+            .app-l-onboard-form {
+                min-height: 0;
+                padding: 16px;
+                border: solid 1px transparent;
+                background-color: $login-form-bg;
+                max-width: 412px;
+                width: 100%;
+                
+                @include flexbox();
+                @include flex-shrink(0);
+                @include flex-direction(column);
+                @include border-radius(3px);
+                
+                @media screen and (max-width: 576px) {
+                    max-width: 100%;
+                }
+
+                .app-l-company-logo-contents {
+                    width: 100%;
+
+                    @include flexbox();
+                    @include align-items(flex-start);
+
+                    .app-l-company-logo {
+                        max-width: 137px;
+                        max-height: 55px;
+
+                        @include flexbox();
+                        @include align-items(center);
+                        @include justify-content(center);
+                        @include flex-shrink(0);
+
+                        > img {
+                            max-width: 137px;
+                            width: auto;
+                            max-height: 55px;
+                            height: 55px;
+                        }
+                    }
+
+                    + .app-l-onboard-forms {
+                        margin-top: 40px;
+
+                        @media screen and (max-width: 767px) {
+                            margin-top: 24px;
+                        }
+                    }
+                }
+
+                + .app-l-onboard-logo-holder {
+                    margin-top: 32px;
+
+                    @media screen and (max-width: 767px) {
+                        margin-top: 16px;
+                    }
+                }
+            }
+
+            .app-l-onboard-logo-holder {
+                margin-left: auto;
+                margin-bottom: auto;
+                margin-right: auto;
+                display: none;
+                padding-bottom: 16px;
+    
+                @include align-items(center);
+                @include justify-content(center);
+                @include flex-shrink(0);
+
+                @media screen and (max-width: 767px) {
+                    @include flexbox();
+                }
+
+                .app-l-onboard-app-logo {
+           
+                    > img {
+                        width: 85px;
+                        max-width: 85px;
+                        height: 69px;
+                        max-height: 69px;
+                        margin: auto;
+
+                        @media screen and (max-width: 767px) {
+                            width: 45px;
+                            max-width: 45px;
+                            height: 29px;
+                            max-height: 29px;
+                        }
+                    }
+                }
+    
+                .app-l-onboard-brand-text {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.app-l-onboard-btn {
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none; 
+    border: 1px solid $app-brand-primary;
+    white-space: nowrap;
+    font-weight: 500;
+    color: $white;
+    padding: 8px 24px 7px 24px;
+    font-size: 14px;
+    line-height: 16px;
+    outline: none;
+    font-family: $body-font;
+    background-color: $app-brand-primary;
+
+    @include transition(background ease 0.3s, color ease 0.3s, border ease 0.3s, box-shadow ease 0.3s);
+    @include inline-flex();
+    @include align-items(center);
+    @include justify-content(center);
+    @include align-items(center);
+    @include border-radius(3px);
+
+    &:hover {
+        @include boxShadow(0px 0px 11px rgba(157, 163, 181));
+    }
+}
+
+.app-l-form-link {
+    width: auto;
+    text-decoration: underline;
+    font-size: 12px;
+    line-height: 16px;
+    color: $app-brand-primary;
+    font-weight: 400;
+    text-align: right;
+    cursor: pointer;
+
+    @include transition(color ease 0.3s);
+
+    &:hover {
+        text-decoration: none;
+        color: $primary-btn-active-focus;
+    }
+}
+
+.app-l-onboard-form-controls {
+    width: 100%;
+    margin-bottom: 16px;
+
+    @include flexbox();
+    @include flex-grow(0);
+    @include flex-shrink(0);
+    @include flex-direction(column);
+
+    .app-l-onboard-btn {
+        width: 100%;
+        padding: 9px 8px 8px 8px;
+        height: 40px;
+    }
+
+}
+
+.app-l-onboard-options {
+    width: 100%;
+    
+    @include flexbox();
+    @include align-items(center);
+    
+    .app-l-form-link {
+        margin-left: auto;
+        text-align: right;
+        padding: 8px 0px;
+    }
+}
+
+.app-l-onboard-screen-footer {
+    width: 100%;
+    text-align: center;
+    padding: 16px 8px 0px 8px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include flex-shrink(0);
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+
+    > h4 {
+        margin: 0;
+        color: $app-brand-secondary;
+        font-size: 13px;
+        line-height: 18px;
+        cursor: default;
+    }
+}
+
+.app-l-onboard-logo-holder {
+
+    position: relative;
+    z-index: 2;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+    .app-l-onboard-app-logo {
+        padding: 10px;
+        background-color: $white;
+
+        @include flexbox();
+        @include flex-shrink(0);
+        @include align-items(center);
+        @include justify-content(center);
+        @include border-radius(6px);
+
+        @media screen and (max-width: 767px) {
+            padding: 4px;
+        }
+
+        > img {
+            width: 86px;
+            max-width: 86px;
+            height: 66px;
+            max-height: 66px;
+            margin: auto;
+
+            @media screen and (max-width: 767px) {
+                width: 45px;
+                max-width: 45px;
+                height: 29px;
+                max-height: 29px;
+            }
+        }
+
+        + .app-l-onboard-brand-text {
+            margin-top: 12px;
+
+            @media screen and (max-width: 767px) {
+                margin-top: 8px;
+            }
+        }
+    }
+
+    .app-l-onboard-brand-text {
+        font-size: 13px;
+        line-height: 19px;
+        color: $white;
+        font-weight: 400;
+        margin: 0;
+
+        @media screen and (max-width: 767px) {
+            font-size: 10px;
+            line-height: 12px;
+        }
+    }
+}
+
+.app-l-validation-info {
+    width: 100%;
+    padding: 0px 0px 0px 40px;
+    cursor: default;
+    line-height: normal;
+    margin-bottom: 16px;
+    position: relative;
+    background-color: $form-error-background;
+    border: solid 1px $validation-red;
+
+    @include border-radius(4px);
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(space-between);
+
+    &:after {
+        font-family: 'port-client' !important;;
+        content: "\e93e";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 100%;
+        padding: 4px 11px 4px 13px;
+        color: $validation-red;
+        font-size: 16px;
+        line-height: normal;
+
+        @include inline-flex();
+        @include align-items(center);
+        @include justify-content(center);
+    }
+
+    > p {
+        margin: 0;
+        text-align: center;
+        font-weight: 400;
+        font-size: 12px;
+        color: $form-error;
+    }
+
+    .app-l-validation-info-close {
+        width: 32px;
+        height: 100%;
+        cursor: pointer;
+        padding: 8px;
+
+        @include flex-shrink(0);
+        @include inline-flex();
+        @include align-items(center);
+        @include justify-content(center);
+
+        &:hover {
+            i {
+                opacity: 1;
+            }
+        }
+
+        i {
+            opacity: 0.5;
+            color: $validation-red;
+            font-size: 12px;
+            line-height: normal;
+
+            @include transition(opacity 0.2s ease);
+        }
+    }
+}
+
+.app-l-onboard-forms {
+    width: 100%;
+    
+    @include flexbox();
+    @include flex-direction(column);
+    
+    .app-l-onboard-form-header {
+        width: 100%;
+        margin: 0;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 29px;
+        color: $login-header;
+
+        + .app-l-onboard-form-group {
+            margin-top: 24px;
+        }
+    }
+
+    .app-l-onboard-form-group {
+        .app-l-onboard-form-label {
+            font-size: 14px;
+            line-height: 16px;
+            color: $onboard-form-label;
+        }
+
+        + .app-l-onboard-form-controls {
+            margin-top: 8px;
+        }
+    }
+}
+
+.app-l-onboard-footer {
+    border-top: solid 1px $generic-border-color;
+    padding: 24px 0px 16px 0px;
+    margin-top: auto;
+
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(row);
+
+    &.login-footer {
+        padding: 0px 0px 16px 0px;
+        
+        @include justify-content(flex-start);
+        
+        @media screen and (max-width: 767px) {
+            padding: 0px 0px 0px 0px;
+        }
+    }
+
+    > h4 {
+        color: $text-color;
+        margin: 0;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 400;
+        width: auto;
+        margin-right: 4px;
+    }
+
+    > p {
+        color: $text-color;
+        margin: 0;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 400;
+
+        &.center-text {
+            text-align: center;
+            width: 100%;
+        }
+    }
+}

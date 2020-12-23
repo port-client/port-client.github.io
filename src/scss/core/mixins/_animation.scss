@@ -1,0 +1,20 @@
+/*
+    Example usage: 
+    @include animation(10s, 5s, changecolour)
+*/
+
+@mixin animation($animation...){
+    animation: $animation;
+    -webkit-animation: $animation;
+    -moz-animation: $animation;
+    -ms-animation: $animation;
+    -o-animation: $animation;
+}
+
+@mixin noAnimation(){
+    animation: none !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -ms-animation: none !important;
+    -o-animation: none !important;
+}

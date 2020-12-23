@@ -1,0 +1,127 @@
+h1, h2, h3, h4, h5, h6, p, label {
+    cursor: default;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    @include flexbox();
+    @include flex-direction(column);
+    @include align-items(center);
+}
+
+.app-l-main-wrap {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+
+    @include flexbox();
+    @include flex-direction(column);
+
+    &:before, &:after {
+        display: block;
+        height: 24px;
+        width: 100%;
+    }
+}
+
+.app-l-new-item-entry {
+    width: 100%;
+    padding: 16px 0px;
+    
+    @include flexbox();
+    @include align-items(center);
+    
+    > form {
+        width: 100%;
+
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(space-between);
+
+        > label {
+            display: none;
+        }
+
+        > input {
+            @include flex-grow(1);
+
+            + .app-c-btn {
+                margin-left: 16px;
+            }
+        }
+    }
+}
+
+.app-l-list-container {
+    width: 100%;
+    min-height: 0;
+    max-height: 100%;
+    border: solid 1px #d1d1d1;
+
+    @include flexbox();
+    @include align-items(center);
+    @include flex-direction(column);
+    @include border-radius(15px);
+
+    .app-l-list-title {
+        width: 100%;
+        padding: 8px 16px;
+
+        @include flexbox();
+        @include align-items(center);
+
+        > h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: $text-color;
+            line-height: normal;
+            margin-right: auto;
+        }
+
+        + hr {
+            margin: 0px;
+            border-top: solid 1px #cfcfcf;
+        }
+    }
+
+    .app-l-list {
+        width: 100%;
+        min-height: 0;
+        height: 100%;
+        max-height: 100%;
+        padding: 8px 16px;
+
+        @include flexbox();
+        @include align-items(center);
+        @include flex-direction(column);
+
+        .app-l-list-item {
+            width: 100%;
+            min-height: 0;
+            
+            @include flexbox();
+            @include align-items(center);
+            
+            + .app-l-list-item {
+                margin-top: 16px;
+            }
+
+            > .app-c-checkbox {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.app-l-color-picker {
+    width: 30px;
+    height: 30px;
+    border: solid 1px transparent;
+
+    @include border-radius(4px);
+}
