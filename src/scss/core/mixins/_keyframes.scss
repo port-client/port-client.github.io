@@ -1,0 +1,22 @@
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content; 
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    } 
+}
+
+@mixin animationIteration($animationIteration){
+    animation-iteration-count:$animationIteration;
+    -webkit-animation-iteration-count:$animationIteration;
+    -moz-animation-iteration-count:$animationIteration;
+    -ms-animation-iteration-count:$animationIteration;
+    -o-animation-iteration-count:$animationIteration;
+}

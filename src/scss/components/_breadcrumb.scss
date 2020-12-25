@@ -1,0 +1,38 @@
+.app-c-breadcrumb{
+    @include flexbox();
+    @include flex-wrap(wrap);
+    @include align-items(center);
+
+    .app-c-breadcrumb__prev{
+        color: $text-dark-extra;
+        font-size: $text-md;
+        font-weight: 400;
+        position: relative;
+        padding-right: 13px;
+        margin-right: 10px;
+
+        @include transition(color ease 0.2s);
+
+        &:after{
+            content: "\e90d";
+            font-family: $font-port-client;
+            font-size: 8px;
+            color: #8690A9;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+
+            @include flexbox();
+            @include align-items(center);
+        }
+
+        // &:hover{
+        //     color: $text-dark-medium;
+        // }
+    }
+    .app-c-breadcrumb__active{
+        color: $text-dark-normal;
+        cursor: default;
+    }
+}

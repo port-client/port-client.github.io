@@ -1,0 +1,900 @@
+@import "../core/mixins/flexbox";
+@import "../core/mixins/border-radius";
+@import "../core/mixins/box-shadow";
+
+@import "../variables/variables";
+@import "../theme/theme";
+
+// DEVEXTREME FILTER STYLES
+
+.filter-container {
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+    min-width: 0;
+    
+    @include flexbox();
+    @include flex-shrink(0);
+
+    .dx-filterbuilder {
+        .dx-filterbuilder-group {
+            .dx-filterbuilder-group-item {
+
+                @include flexbox();
+                @include align-items(center);
+
+                + .dx-filterbuilder-group-content {
+                    margin-top: 8px;
+                }
+
+                .dx-filterbuilder-group-operation {
+                    height: 30px;
+                    padding: 6px 16px;
+                    background-color: $app-brand-primary;
+                    color: $white;
+
+                    @include inline-flex();
+                    @include align-items(center);
+                    @include justify-content(center);
+                    @include border-radius(3px);
+                    @include flex-shrink(0);
+
+                    &:hover {
+                        background-color: $primary-shade-dimmed;
+                        // background-color: lighten($app-brand-primary, 10%);
+                    }
+                }
+                
+                .dx-filterbuilder-action-icon {
+                    width: 30px;
+                    height: 30px;
+                    margin-bottom: 0;
+
+                    padding: 0;
+                    font-size: 16px;
+                    outline: none;
+
+                    @include border-radius(3px);
+                    @include flex-shrink(0);
+                    @include transition(all 0.3s ease-in-out);
+
+                    &:before {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        margin: auto;
+                        font-weight: 400;
+                        width: 100%;
+                        height: 100%;
+
+                        @include inline-flex();
+                        @include align-items(center);
+                        @include justify-content(center);
+                        @include transition(all 0.3s ease-in-out);
+                    }
+
+                    &.dx-icon-plus {
+                        position: relative;
+                        background-color: $app-brand-primary;
+                        color: $white;
+                        
+                        &:hover{
+                            outline: none;
+                            background: $primary-shade-dimmed;
+                        }
+                        &:focus, &:active{
+                            outline: none;
+                            background: $primary-shade-dimmed;
+                        }
+                        
+                        &:before {
+                            font-family: 'port-client' !important;;
+                            content: "\e910";
+                            font-size: 14px;
+                        }
+                    }
+
+                    &.dx-icon-remove {
+                        position: relative;
+                        background: $white;
+                        color: $filter-remove-btn-text;
+                        
+                        &:before {
+                            font-family: 'port-client' !important;;
+                            content: "\e936";
+                            font-size: 13px;
+                        }
+                        
+                        &:hover{
+                            color: #293042;
+                            outline: none;
+                            background: $filter-remove-btn-bg;
+                        }
+    
+                        &:focus, &:active{
+                            outline: none;
+                            background: $filter-remove-btn-bg;
+                            color: $filter-remove-btn-text;
+                            
+                            &:before {
+                                color: $filter-remove-btn-text;
+                            }
+                        }
+                    }
+                }
+
+                .dx-filterbuilder-item-field {
+                    background: $filter-condition-bg;
+                    color: $filter-condition-text;
+                    min-height: 30px;
+                    padding: 6px 16px;
+                    font-size: 12px;
+                    font-weight: 500;
+
+                    @include border-radius(3px);
+                    @include transition(all 0.3s ease-in-out);
+                    @include inline-flex();
+                    @include align-items(center);
+                    @include justify-content(center);
+                    @include flex-shrink(0);
+
+                    &:hover{
+                        outline: none;
+                        background: $app-brand-primary;
+                        color: $white;
+                    }
+                    
+                    &:focus, &:active{
+                        outline: none;
+                        background: $app-brand-primary;
+                        color: $white;
+                    }
+                }
+
+                .dx-filterbuilder-item-operation {
+                    background: $filter-condition-bg;
+                    color: $filter-condition-text;
+                    min-height: 30px;
+                    padding: 6px 16px;
+                    font-size: 12px;
+                    font-weight: 500;
+
+                    @include border-radius(3px);
+                    @include transition(all 0.3s ease-in-out);
+                    @include inline-flex();
+                    @include align-items(center);
+                    @include justify-content(center);
+                    @include flex-shrink(0);
+
+                    &:hover{
+                        outline: none;
+                        background: $app-brand-primary;
+                        color: $white;
+                    }
+
+                    &:focus, &:active{
+                        outline: none;
+                        background: $app-brand-primary;
+                        color: $white;
+                    }
+                }
+
+                .dx-filterbuilder-item-value {
+                    min-height: 30px;
+
+                    @include flex-shrink(0);
+                    
+                    .dx-filterbuilder-item-value-text {
+                        background: $filter-condition-bg;
+                        color: $filter-condition-text;
+                        min-height: 30px;
+                        padding: 6px 16px;
+                        font-size: 12px;
+                        font-weight: 500;
+
+                        @include border-radius(3px);
+                        @include transition(all 0.3s ease-in-out);
+                        @include inline-flex();
+                        @include align-items(center);
+                        @include justify-content(center);
+
+                        &:hover{
+                            outline: none;
+                            background: $filter-editable-condition-bg;
+                            color: $white;
+                        }
+    
+                        &:focus, &:active{
+                            outline: none;
+                            background: $filter-editable-condition-bg;
+                            color: $white;
+                        }
+                    }
+
+                    .dx-texteditor {
+                        height: 30px;
+                        margin-top: 0;
+                        margin-bottom: 0;
+
+                        @include flex-shrink(0);
+
+                        .dx-texteditor-container {
+                            height: 30px;
+                            min-height: 30px;
+
+                            .dx-texteditor-input-container {
+                                height: 30px;
+                                min-height: 30px;
+
+                                .dx-texteditor-input {
+                                    height: 30px;
+                                    min-height: 30px;
+                                    padding: 7px 9px 8px 9px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .dx-filterbuilder-group-content {
+                
+                > .dx-filterbuilder-group {
+                    + .dx-filterbuilder-group {
+                        margin-top: 8px;
+                    }
+                }
+
+                .dx-filterbuilder-group-content {
+                    padding-left: 34px;
+                }
+            }
+        }
+    }
+}
+
+.dx-filterbuilder-add-condition {
+    .dx-popup-normal {
+        .dx-popup-content {
+            .dx-widget {
+                .dx-scrollable {
+                    .dx-scrollable-wrapper {
+                        .dx-scrollable-container {
+                            .dx-scrollable-content {
+                                .dx-treeview-node-container {
+                                    .dx-treeview-node {
+                                        .dx-item {
+                                            line-height: normal;
+                                            width: 100%;
+
+                                            @include inline-flex();
+                                            @include align-items(center);
+                                            @include justify-content(flex-start);
+
+                                            &.dx-state-hover {
+                                                background-color: $select-dropdown-item-bg;
+
+                                                .dx-item-content {
+                                                    > span {
+                                                        color: $select-dropdown-item-text;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        &.dx-treeview-item-without-checkbox {
+                                            &.dx-state-focused {
+                                                .dx-treeview-item {
+                                                    background-color: $select-dropdown-item-select-bg;
+                                                    
+                                                    .dx-item-content {
+                                                        > span {
+                                                            color: $white;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .dx-empty-message {
+                                    min-height: 100px;
+                                    width: 100%;
+                                    color: $text-dark-normal;
+                                    font-size: 14px;
+    
+                                    @include inline-flex();
+                                    @include justify-content(center);
+                                    @include align-items(center);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dx-filterbuilder-operations {
+    .dx-overlay-content {
+        border-color: $generic-dropdown-border;
+
+        @include boxShadow(0px 3px 6px #E3E3E3);
+        @include border-radius(3px);
+
+        .dx-popup-content {
+            .dx-treeview {
+                .dx-scrollable {
+                    .dx-scrollable-wrapper {
+                        .dx-scrollable-container {
+                            .dx-scrollable-content {
+                                .dx-treeview-node-container {
+                                    .dx-treeview-node {
+                                        .dx-item {
+                                            line-height: normal;
+                                            padding: 4px 12px;
+                                            width: 100%;
+                                            
+                                            + .dx-item {
+                                                border-top: solid 1px $select-dropdown-item-seperator;
+                                            }
+
+                                            @include inline-flex();
+                                            @include align-items(center);
+                                            @include justify-content(flex-start);
+
+                                            .dx-item-content {
+
+                                                > .dx-icon {
+                                                    margin-right: 8px;
+                                                }
+                                                > span {
+                                                    font-size: 12px;
+                                                    line-height: 16px;
+                                                    color: $text-dark-extra;
+                                                }
+                                            }
+
+                                            &.dx-state-hover {
+                                                background-color: $select-dropdown-item-bg;
+    
+                                                .dx-item-content {
+                                                    > .dx-icon {
+                                                        color: $select-dropdown-item-text;
+                                                    }
+                                                    > span {
+                                                        color: $select-dropdown-item-text;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &.dx-state-selected, &.dx-state-focused {
+                                            .dx-item {
+                                                background-color: $select-dropdown-item-select-bg;
+    
+                                                .dx-item-content {
+                                                    > .dx-icon {
+                                                        color: $white;
+                                                    }
+                                                    > span {
+                                                        color: $white;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dx-header-filter-menu {
+    .dx-popup-normal {
+        width: 200px !important;
+        height: 250px !important;
+        right: 0 !important;
+        left: auto !important;
+        border-color: $generic-dropdown-border;
+
+        @include boxShadow(0px 3px 6px #E3E3E3);
+        @include border-radius(3px);
+
+        .dx-popup-content {
+            padding: 0;
+            position: relative;
+            z-index: 1502;
+
+            > .dx-scrollable {
+                position: relative;
+                z-index: 1503;
+
+                .dx-list-search {
+                    margin-bottom: 0;
+                    margin-top: -1px;
+                    margin-left: -1px;
+                    margin-right: -1px;
+
+                    position: relative;
+                    z-index: 1504;
+                    border: solid 1px $generic-dropdown-border;
+
+                    @include boxShadow(0px 1px 4px rgba(17, 25, 45, 0.1));
+
+                    &.dx-editor-outlined {
+                        &.dx-state-focused {
+                            @include boxShadow(
+                                inset 0px 0px 0px 1px $app-brand-primary,
+                                0px 1px 4px rgba(17, 25, 45, 0.1)
+                            );
+                        }
+                    }
+                    
+                    .dx-texteditor-container {
+                        .dx-texteditor-input-container {
+                            .dx-icon-search {
+                                padding: 8px 4px 8px 10px;
+
+                                &:before {
+                                    content: "\e93d";
+                                    font-family: 'port-client' !important;;
+                                    color: $text-dark-normal;
+                                    font-size: 16px;
+                                }   
+                            }
+                            .dx-placeholder {
+                                &:before {
+                                    padding-left: 36px;
+                                }
+                            }
+                            .dx-texteditor-input {
+                                padding: 6px 8px 6px 34px;
+                                min-height: 30px;
+                                font-size: 12px;
+                                line-height: 18px;
+
+                                ::-webkit-input-placeholder { 
+                                    color: $text-dark-normal;
+                                }
+                                ::-moz-placeholder { 
+                                    color: $text-dark-normal;
+                                }
+                                :-ms-input-placeholder { 
+                                    color: $text-dark-normal;
+                                }
+                                :-moz-placeholder {
+                                    color: $text-dark-normal;
+                                }
+                            }
+                        }
+                    }
+
+                    &.dx-state-hover {
+                        .dx-texteditor-input-container {
+                            .dx-icon-search {
+                                color: $black;
+                            }
+                        }
+                    }
+                }
+                > .dx-scrollable-wrapper {
+                    height: calc(100% - 44px);
+
+                    .dx-scrollable-container {
+                        .dx-scrollable-content {
+
+                            .dx-scrollview-content {
+                                .dx-list-select-all {
+                                    padding: 8px 12px 8px 12px;
+
+                                    .dx-list-select-all-checkbox {
+                                        margin: 1px 0 0px 0px;
+                                        cursor: pointer;
+                                        min-height: 17px;
+                                        min-width: 16px;
+                                        line-height: 16px;
+                                    }
+                                    .dx-list-select-all-label {
+                                        padding: 0 0 0 8px;
+                                        color: $text-dark-extra;
+                                        font-size: 12px;
+                                        line-height: 16px;
+                                        max-width: 100%;
+                                        white-space: normal;
+                                        cursor: pointer;
+                                    }
+                                    &.dx-state-hover {
+                                        .dx-list-select-all-checkbox {
+                                            .dx-checkbox-container {
+                                                .dx-checkbox-icon {
+                                                    border-color: $dx-checkbox-active-border;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .dx-list-item {
+                                    padding: 4px 12px;
+                                    border-top: transparent;
+
+                                    .dx-list-select-checkbox-container {
+                                        width: 16px;
+                                        min-height: 17px;
+                                        vertical-align: top;
+
+                                        .dx-list-select-checkbox {
+                                            margin-left: 0;
+                                            margin-top: 0;
+                                            margin-bottom: auto;
+                                            line-height: 16px;
+
+                                            .dx-checkbox-container {
+                                                .dx-checkbox-icon {
+                                                    border-color: $unfocussed-field-border;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.dx-state-hover {
+                                        .dx-list-select-checkbox-container {    
+                                            .dx-list-select-checkbox {
+                                                .dx-checkbox-container {
+                                                    .dx-checkbox-icon {
+                                                        border: solid 1px $dx-checkbox-active-border;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &.dx-state-focused {
+                                        .dx-list-select-checkbox-container {    
+                                            .dx-list-select-checkbox {
+                                                .dx-checkbox-container {
+                                                    .dx-checkbox-icon {
+                                                        border: solid 1px $dx-checkbox-active-border;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .dx-item-content {
+                                        padding: 0 0 0 8px;
+                                        cursor: pointer;
+                                        max-width: 100%;
+                                        white-space: normal;
+                                    }
+                                }
+                            }
+
+                            .dx-empty-message {
+                                min-height: 100px;
+                                width: 100%;
+                                color: $text-dark-normal;
+                                font-size: 14px;
+
+                                @include inline-flex();
+                                @include justify-content(center);
+                                @include align-items(center);
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .dx-treeview-with-search {
+                padding: 0;
+                position: relative;
+                z-index: 1502;
+
+                .dx-treeview-search {
+                    margin-bottom: 0;
+                    margin-top: -1px;
+                    margin-left: -1px;
+                    margin-right: -1px;
+
+                    position: relative;
+                    z-index: 1504;
+                    border: solid 1px $unfocussed-field-border;
+
+                    @include boxShadow(0px 1px 4px rgba(17, 25, 45, 0.1));
+
+                    &.dx-editor-outlined {
+                        &.dx-state-focused {
+                            @include boxShadow(
+                                inset 0px 0px 0px 1px $app-brand-primary,
+                                0px 1px 4px rgba(17, 25, 45, 0.1)
+                            );
+                        }
+                    }
+
+                    .dx-texteditor-container {
+                        .dx-texteditor-input-container {
+                            .dx-icon-search {
+                                padding: 8px 4px 8px 10px;
+
+                                &:before {
+                                    content: "\e93d";
+                                    font-family: 'port-client' !important;;
+                                    color: $text-dark-normal;
+                                    font-size: 16px;
+                                }  
+                            }
+                            .dx-placeholder {
+                                &:before {
+                                    padding-left: 36px;
+                                }
+                            }
+                            .dx-texteditor-input {
+                                padding: 6px 8px 6px 34px;
+                                min-height: 30px;
+                                font-size: 12px;
+                                line-height: 18px;
+
+                                ::-webkit-input-placeholder { 
+                                    color: $text-dark-normal;
+                                }
+                                ::-moz-placeholder { 
+                                    color: $text-dark-normal;
+                                }
+                                :-ms-input-placeholder { 
+                                    color: $text-dark-normal;
+                                }
+                                :-moz-placeholder {
+                                    color: $text-dark-normal;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .dx-scrollable {
+                    .dx-scrollable-wrapper {
+                        .dx-scrollable-container {
+                            .dx-scrollable-content {
+
+                                .dx-treeview-select-all-item {
+                                    border-bottom: none;
+                                    margin-bottom: 0px;
+                                    padding: 8px 12px;
+                                }
+
+                                .dx-treeview-node-container {
+                                    .dx-treeview-item-with-checkbox {
+                                        padding-left: 24px;
+
+                                        .dx-checkbox {
+                                            top: 7px;
+                                            left: 27px;
+                                        }
+
+                                        .dx-treeview-item {
+                                            padding: 3px 8px 0px 26px;
+                                            min-height: 26px;
+
+                                            @include inline-flex();
+                                            @include align-items(center);
+                                            @include justify-content(flex-start);
+
+                                            .dx-item-content {
+                                                font-size: 12px;
+                                                color: $text-dark-extra;
+                                                line-height: 18px;
+                                                max-width: 100%;
+                                                white-space: normal;
+                                            }
+
+                                            &.dx-state-hover {
+                                                background-color: transparent;
+                                            }
+                                        }
+
+                                        .dx-treeview-toggle-item-visibility {
+                                            left: 4px;
+                                            height: 29.5px;
+
+                                            &:before {
+                                                content: "\e909";
+                                                font-family: 'port-client' !important;;
+                                                color: $text-dark-normal;
+                                                font-size: 10px;
+                                            } 
+                                        }
+
+                                        &.dx-state-hover {
+                                            .dx-checkbox {
+                                                .dx-checkbox-container {
+                                                    .dx-checkbox-icon {
+                                                        border-color: $dx-checkbox-active-border;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &.dx-state-focused {
+                                            .dx-checkbox {  
+                                                .dx-checkbox-container {
+                                                    .dx-checkbox-icon {
+                                                        border: solid 1px $dx-checkbox-active-border;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .dx-empty-message {
+                                    min-height: 100px;
+                                    width: 100%;
+                                    color: $text-dark-normal;
+                                    font-size: 14px;
+    
+                                    @include inline-flex();
+                                    @include justify-content(center);
+                                    @include align-items(center);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .dx-list {
+                &.dx-list-select-decorator-enabled {
+                    .dx-list-select-all {
+                        &.dx-state-focused {
+                            .dx-checkbox-icon {
+                                border: solid 1px $dx-checkbox-active-border;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .dx-toolbar {
+            padding: 8px;
+            border-top: solid 1px $text-light-normal;
+
+            .dx-toolbar-items-container {
+                .dx-toolbar-after {
+                    padding-left: 0;
+                    width: 100%;
+
+                    .dx-toolbar-button {
+
+                        .dx-item-content {
+                            .dx-button {
+                                
+                                width: 100%;
+                                text-align: center;
+                                vertical-align: middle;
+                                touch-action: manipulation;
+                                cursor: pointer;
+                                border: 1px solid transparent;
+                                outline: none;
+                            
+                                @include transition(background ease 0.3s, color ease 0.3s, border ease 0.3s, box-shadow ease 0.3s);
+                                @include border-radius(3px);
+                            
+                                &:hover{
+                                    text-decoration: none;
+                                    outline: none;
+                                }
+                            
+                                &:active, &.active {
+                                    outline: 0;
+                                    background-image: none; // @include boxShadow(inset 0 3px 5px rgba(0,0,0,.125));
+                            
+                                    @include noShadow();
+                                }
+                            
+                                &:focus {
+                                    @include noShadow();
+                                }
+
+                                .dx-button-content {
+
+                                    white-space: nowrap;
+                                    font-weight: 500;
+                                    padding: 8px 24px 7px 24px;
+                                    outline: none;
+                                    width: 100%;
+                                    
+                                    @include transition(background ease 0.3s, color ease 0.3s, border ease 0.3s, box-shadow ease 0.3s);
+                                    @include inline-flex();
+                                    @include align-items(center);
+                                    @include justify-content(center);
+                                    
+                                    .dx-button-text {
+                                        color: #4f3f43;
+                                        font-family: $body-font;
+                                        font-size: 13px;
+                                        line-height: 16px;
+                                    }
+                                }
+
+                                &.dx-button-normal {
+                                    &.dx-state-hover {
+                                        .dx-item-content {
+                                            @include border-radius(0);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &:first-child {
+                            .dx-item-content {
+                                .dx-button {
+                                    border-color: $app-brand-primary;
+                                    background: $app-brand-primary;
+
+                                    &:active, &:focus {
+                                        border-color: $primary-btn-active-focus;
+                                    }
+                                    &:hover {
+                                        border-color: $primary-btn-hover;
+                                    }
+
+                                    .dx-button-content {
+                                        background: $app-brand-primary;
+                                        
+                                        &:hover{
+                                            background: $primary-btn-hover;
+                                            outline: none;
+                                        }
+                                        
+                                        &:active, &:focus {
+                                            background: $primary-btn-active-focus;
+                                        }
+                                        
+                                        .dx-button-text {
+                                            color: $white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &:last-child {
+                            .dx-item-content {
+                                
+                                .dx-button {
+                                    border-color: $app-brand-primary;
+                                    background: $app-brand-secondary;
+                                    
+                                    .dx-button-content {
+                                        background: transparent;
+                                        padding: 8px 16px 7px 16px;
+                                        
+                                        &:hover {
+                                            outline: none;
+                                            background: $app-brand-primary-disable;
+                                        }
+                                        
+                                        &:active, &:focus {
+                                            background: $app-brand-primary-disable;
+                                            outline: none !important;
+                                            
+                                            @include noShadow();
+                                        }
+                                        .dx-button-text {
+                                            color: $app-brand-primary;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

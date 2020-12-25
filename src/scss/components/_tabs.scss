@@ -1,0 +1,272 @@
+
+.app-c-tab-group {
+    background-color: $white;
+
+    .tab-container {
+        width: auto;
+
+        .nav-tabs {
+            border-bottom-color: $generic-border-color;
+
+            .nav-item {
+                > a {
+                    padding: 12px 24px;
+                    position: relative;
+                    border: none;
+                    background-color: transparent;
+                    font-weight: 500;
+                    font-size: 15px;
+                    line-height: 17px;
+                    color: $text-dark-normal;
+                    
+                    @include transition(color 0.3s ease-in-out);
+                    
+                    &:hover {
+                        color: $text-dark-extra;
+                        
+                        .app-l-tab-header {
+                            color: $text-dark-extra;
+                        }
+                    }
+                    &:focus {
+                        color: $tab-focus-text;
+                    }
+
+                    &:before {
+                        content: '';
+                        width: 0;
+                        height: 3px;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        margin: auto;
+                        background-color: $app-brand-primary;
+
+                        @include transition(width 0.3s ease-in-out);
+                        @include border-radius(20px 20px 0px 0px);
+                    }
+
+                    .app-l-tab-header {
+                        background-color: transparent;
+                        font-weight: 500;
+                        font-size: 15px;
+                        line-height: 17px;
+                        color: $text-dark-normal;
+                        position: relative;
+
+                        @include transition(color 0.2s ease-in-out);
+
+                        &:before {
+                            content: "\e93e";
+                            font-family: 'port-client' !important;;
+                            speak: none;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 14px;
+                            position: absolute;
+                            right: -20px;
+                            top: auto;
+                            bottom: 3px;
+                            left: auto;
+                            color: $validation-red;
+                            display: none;
+                        }
+
+                        &.error-tab {
+                            &:before {
+                                @include inline-flex();
+                            }
+                        }
+                    }
+                }
+                &.active {
+                    &:focus {
+                        > a {
+                            color: $tab-focus-text;
+
+                            .app-l-tab-header {
+                                color: $tab-focus-text;
+                            }
+                        }
+                    }
+                    a {
+                        color: $text-dark-extra;
+
+                        .app-l-tab-header {
+                            color: $text-dark-extra;
+                        }
+
+                        &:before {
+                            width: 51px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.horizontal-scroll {
+        .tab-container {
+            .nav-tabs {
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+
+                @include flex-wrap(nowrap);
+            }
+        }
+    }
+
+    &.app-l-data-tabs {
+        background-color: $white;
+
+        .tab-container {
+            .nav-tabs {
+                background-color: $tab-header-bg;
+                //border-bottom: solid 1px $form-control-border;
+
+                .nav-item {
+                    a {
+                        padding: 12px 24px;
+                    }
+                }
+            }
+        }
+        .app-l-tab-contents { 
+            padding: 0;     
+        }
+    }
+
+    &.app-l-full-height-tab {
+        height: 100%;
+        min-height: 0;
+
+        .tab-container {
+            height: 100%;
+            min-height: 0;
+
+            @include flexbox();
+            @include flex-direction(column);
+
+            .nav-tabs {
+                @include flex-shrink(0);
+            }
+
+            .tab-content {
+                min-height: 0;
+                height: 100%;
+
+                @include flexbox();
+                @include flex-direction(column);
+
+                .tab-pane {
+                    min-height: 0;
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    &.app-l-secondary-tab {
+        .tab-container {
+            width: auto;
+    
+            .nav-tabs {
+                border-bottom-color: transparent;
+    
+                .nav-item {
+                    > a {
+                        padding: 8px 16px;
+                        position: relative;
+                        border: none;
+                        background-color: transparent;
+                        font-weight: 500;
+                        font-size: 15px;
+                        line-height: 17px;
+                        color: $text-dark-normal;
+                        margin: 8px 0px;
+                        
+                        @include transition(color 0.3s ease-in-out, background-color 0.3s ease-in-out);
+                        @include border-radius(4px);
+                        
+                        &:hover {
+                            color: $text-dark-extra;
+                            
+                            .app-l-tab-header {
+                                color: $text-dark-extra;
+                            }
+                        }
+                        &:focus {
+                            color: $tab-focus-text;
+                        }
+    
+                        &:before {
+                            display: none;
+                        }
+    
+                        .app-l-tab-header {
+                            background-color: transparent;
+                            font-weight: 500;
+                            font-size: 15px;
+                            line-height: 17px;
+                            color: $text-dark-normal;
+                            position: relative;
+    
+                            @include transition(color 0.2s ease-in-out);
+    
+                            &:before {
+                                content: "\e93e";
+                                font-family: 'port-client' !important;;
+                                speak: none;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 14px;
+                                position: absolute;
+                                right: -20px;
+                                top: auto;
+                                bottom: 3px;
+                                left: auto;
+                                color: $validation-red;
+                                display: none;
+                            }
+    
+                            &.error-tab {
+                                &:before {
+                                    @include inline-flex();
+                                }
+                            }
+                        }
+                    }
+                    &.active {
+                        &:focus {
+                            > a {
+                                color: $app-brand-primary-light;
+    
+                                .app-l-tab-header {
+                                    color: $app-brand-primary-light;
+                                }
+                            }
+                        }
+                        a {
+                            color: $app-brand-primary-light;
+                            background-color: $app-brand-secondary;
+    
+                            .app-l-tab-header {
+                                color: $app-brand-primary-light;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.tab-header-group-mh-16 {
+        .tab-container {
+            .nav-tabs {
+                margin: 0 16px;
+            }
+        }
+    }
+}
