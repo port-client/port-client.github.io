@@ -1,0 +1,41 @@
+<div class="course-card" *ngIf="course" [ngClass]="cardClass()" [ngStyle]="getCardBg()">
+
+    <div class="course-title">
+        <p>
+            {{cardIndex || '' + '.' + course?.description}}
+        </p>
+    </div>
+    
+    <img width="300" alt="Logo" class="img-fluid" *ngIf="isImageVisible(); else noImage"
+         [src]="course?.iconUrl">
+
+    <ng-template #noImage>
+        <p class="mt-2 mb-2">No image available</p>
+    </ng-template>
+
+    <div class="course-description">
+        <p>
+            {{course?.longDescription}}
+        </p>
+    </div>
+
+    <div class="course-category" [ngSwitch]="course.category">
+        <p class="category" *ngSwitchCase="'BEGINNER'">
+            beginner
+        </p>
+        <p class="category" *ngSwitchCase="'INTERMEDIATE'">
+            intermediate
+        </p>
+        <p class="category" *ngSwitchCase="'ADVANCED'">
+            advanced 
+        </p>
+        <p class="category" *ngSwitchDefault>
+            all levels 
+        </p>
+    </div>
+
+    <button role="button" (click)="onCourseViewed()" class="app-c-btn app-c-btn--secondary" title="View course" aria-label="View course" tabindex="0">
+        View course
+    </button>
+
+</div>

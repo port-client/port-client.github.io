@@ -8,21 +8,27 @@
 <body>
   <main>
 
-    <div class="container app-l-main-wrap">
-      <section class="app-l-new-item-entry">
-        <form action="" id="itemEntryForm">
+    <div class="app-l-main-wrap">
+      <section class="app-l-new-item-entry container">
+        <h4 class="app-l-main-title">
+          {{data.title}}
+        </h4>
+        <form id="itemEntryForm">
           <input class="app-l-color-picker mr-2" [(colorPicker)]="defaultColor" [style.background]="defaultColor"/>
           <label for="newItem">
             Enter a new item
           </label>
-          <input class="form-control" id="newItem" type="text" size="100" autocomplete="off" placeholder="Add item" tabindex="0"/>
-          <button id="addItem" class="app-c-btn app-c-btn--icon app-c-btn--icon-border" title="Add new item" aria-label="Add new item to list" tabindex="0">
+          <input #todoInput (keyup)="onKeyUp(todoInput.value)" class="form-control" id="newItem" type="text" size="100" autocomplete="off" placeholder="Add item" tabindex="0"/>
+          <button id="addItem" class="app-c-btn app-c-btn--icon app-c-btn--icon-border" title="Add new item" aria-label="Add new item to list" tabindex="0" type="submit">
+            <i class="icon-plus"></i>
+          </button>
+          <button id="addItem" class="app-c-btn app-c-btn--icon app-c-btn--icon-border" title="Add new item" aria-label="Add new item to list" tabindex="0" (click)="onCourseEdit($event)">
             <i class="icon-plus"></i>
           </button>
         </form>
       </section>
   
-      <section class="app-l-list-container">
+      <!-- <section class="app-l-list-container">
         <div class="app-l-list-title">
           <h1>Todo list</h1>
           <button id="clearItems" class="app-c-btn app-c-btn--secondary" title="Clear list" aria-label="Remove all list items." tabindex="0">
@@ -33,26 +39,50 @@
         <hr />
 
         <div id="listItems" class="app-l-list">
-          <div class="app-l-list-item">
-            <div class="app-c-checkbox">
-              <label>
-                  <input type="checkbox" id="1" tabindex="0">
-                  <span class="app-c-checkbox-icon"></span>
-                  <span class="app-c-checkbox-label">First</span>
-              </label>
-            </div>
+        </div>
+      </section> -->
+
+      <section class="app-l-list-holder">
+        <div class="app-l-list-container container">
+
+          <div class="demo">
+            <h3>{{price | currency: 'INR'}}</h3>
           </div>
-          <div class="app-l-list-item">
-            <div class="app-c-checkbox">
-              <label>
-                  <input type="checkbox" id="1" tabindex="0">
-                  <span class="app-c-checkbox-icon"></span>
-                  <span class="app-c-checkbox-label">First</span>
-              </label>
-            </div>
+          <div class="demo">
+            <h5>{{rate | percent}}</h5>
+          </div>
+          <div class="demo">
+            <p>{{startDate | date: 'MMM/dd/yyyy : ' }}</p>
+          </div>
+
+          <div *ngFor="let pair "></div>
+
+          <div id="listItems" class="app-l-list" #container>
+            <!-- <app-card #cardRef1 (courseSelected)=onCourseSelected($event) [course]="courses[0]"></app-card>
+            <app-card (courseSelected)=onCourseSelected($event) [course]="courses[1]"></app-card> -->
+
+            <!-- <ng-container *ngFor="let course of courses | slice:0:2 ; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd" >
+              <div *ngIf="course" class="app-l-list-item"> 
+                <app-card (courseSelected)="onCourseSelected($event)" 
+                [course]="course" 
+                [cardIndex]="i + 1"
+                [class.is-even]="isEven"
+                [class.is-odd]="isOdd"
+                [class.is-first]="isFirst"
+                [class.is-last]="isLast"></app-card>
+              </div>
+            </ng-container> -->
+            <ng-container *ngFor="let course of courses" >
+              <div *ngIf="course" class="app-l-list-item"> 
+                <app-card (courseSelected)="onCourseSelected($event)" 
+                [course]="course" 
+                [cardIndex]="i + 1"></app-card>
+              </div>
+            </ng-container>
           </div>
         </div>
       </section>
+      
     </div>
 
   </main>

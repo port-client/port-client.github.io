@@ -27,3 +27,16 @@ h1 {
     font-weight: 500;
     color: red;
 }
+
+.is-first {
+    margin-top: 16px;
+}
+.is-last {
+    margin-bottom: 16px;
+}
+.is-even {
+    background-color: #fafafa;
+}
+.is-odd {
+    background-color: #ffffff;
+}

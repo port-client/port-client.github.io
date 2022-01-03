@@ -29,12 +29,22 @@ main {
     }
 }
 
+.app-l-main-title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
 .app-l-new-item-entry {
     width: 100%;
     padding: 16px 0px;
     
     @include flexbox();
     @include align-items(center);
+    @include flex-direction(column);
     
     > form {
         width: 100%;
@@ -57,11 +67,22 @@ main {
     }
 }
 
-.app-l-list-container {
+.app-l-list-holder {
     width: 100%;
     min-height: 0;
     max-height: 100%;
+    overflow: auto;
+
+    @include flexbox();
+    @include align-items(center);
+    @include flex-direction(column);
+}
+
+.app-l-list-container {
+    width: 100%;
     border: solid 1px #d1d1d1;
+    margin-bottom: 16px;
+    padding: 0;
 
     @include flexbox();
     @include align-items(center);
@@ -94,7 +115,7 @@ main {
         min-height: 0;
         height: 100%;
         max-height: 100%;
-        padding: 8px 16px;
+        padding: 8px 0px;
 
         @include flexbox();
         @include align-items(center);
@@ -103,12 +124,14 @@ main {
         .app-l-list-item {
             width: 100%;
             min-height: 0;
+            padding: 0px;
             
             @include flexbox();
             @include align-items(center);
+            @include flex-shrink(0);
             
             + .app-l-list-item {
-                margin-top: 16px;
+                margin-top: 8px;
             }
 
             > .app-c-checkbox {
