@@ -1,4 +1,5 @@
-<div class="course-card" *ngIf="course" [ngClass]="cardClass()" [ngStyle]="getCardBg()">
+<!-- <div class="course-card" *ngIf="course" [ngClass]="cardClass()" [ngStyle]="getCardBg()" #container> -->
+<div class="course-card" *ngIf="course" [ngClass]="cardClass()" #container>
 
     <div class="course-title">
         <p>
@@ -6,12 +7,16 @@
         </p>
     </div>
     
-    <img width="300" alt="Logo" class="img-fluid" *ngIf="isImageVisible(); else noImage"
-         [src]="course?.iconUrl">
+    <!-- <img width="300" alt="Logo" class="img-fluid" *ngIf="isImageVisible(); else noImage"
+         [src]="course?.iconUrl"> -->
+
+    <ng-content *ngIf="isImageVisible(); else noImage">
+    </ng-content>
 
     <ng-template #noImage>
-        <p class="mt-2 mb-2">No image available</p>
+        <ng-container *ngTemplateOutlet="noImageTemplate; context: {description: course?.description}"></ng-container>
     </ng-template>
+
 
     <div class="course-description">
         <p>

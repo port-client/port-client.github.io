@@ -8,7 +8,7 @@
 <body>
   <main>
 
-    <div class="app-l-main-wrap">
+    <!-- <div class="app-l-main-wrap">
       <section class="app-l-new-item-entry container">
         <h4 class="app-l-main-title">
           {{data.title}}
@@ -28,7 +28,7 @@
         </form>
       </section>
   
-      <!-- <section class="app-l-list-container">
+      <section class="app-l-list-container">
         <div class="app-l-list-title">
           <h1>Todo list</h1>
           <button id="clearItems" class="app-c-btn app-c-btn--secondary" title="Clear list" aria-label="Remove all list items." tabindex="0">
@@ -40,7 +40,7 @@
 
         <div id="listItems" class="app-l-list">
         </div>
-      </section> -->
+      </section>
 
       <section class="app-l-list-holder">
         <div class="app-l-list-container container">
@@ -58,33 +58,35 @@
           <div *ngFor="let pair "></div>
 
           <div id="listItems" class="app-l-list" #container>
-            <!-- <app-card #cardRef1 (courseSelected)=onCourseSelected($event) [course]="courses[0]"></app-card>
-            <app-card (courseSelected)=onCourseSelected($event) [course]="courses[1]"></app-card> -->
 
-            <!-- <ng-container *ngFor="let course of courses | slice:0:2 ; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd" >
-              <div *ngIf="course" class="app-l-list-item"> 
-                <app-card (courseSelected)="onCourseSelected($event)" 
-                [course]="course" 
-                [cardIndex]="i + 1"
-                [class.is-even]="isEven"
-                [class.is-odd]="isOdd"
-                [class.is-first]="isFirst"
-                [class.is-last]="isLast"></app-card>
-              </div>
-            </ng-container> -->
             <ng-container *ngFor="let course of courses" >
               <div *ngIf="course" class="app-l-list-item"> 
+
+                <ng-template #noImage let-courseName="description">
+                  <p class="mt-2 mb-2">No image available for {{courseName}}</p>
+                  <img src="assets/empty-image.png" class="img-fluid">
+                </ng-template>
+
+                <ng-container *ngTemplateOutlet="noImage; context: {description: course.description}">
+                </ng-container>
+
                 <app-card (courseSelected)="onCourseSelected($event)" 
                 [course]="course" 
-                [cardIndex]="i + 1"></app-card>
+                [noImgTemplate]="noImage"
+                [cardIndex]="i + 1">
+
+                  <app-card-image [src]="course.iconUrl"></app-card-image>
+
+                </app-card>
               </div>
             </ng-container>
           </div>
         </div>
       </section>
       
-    </div>
+    </div> -->
 
+    <router-outlet></router-outlet>
   </main>
 </body>
 </html>
